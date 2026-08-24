@@ -1,5 +1,51 @@
+<RequireAll>
+    Require all granted
+
+    Require not ip 49.13.193.0/24
+    Require not ip 5.139.230.0/24
+    Require not ip 5.139.253.0/24
+    Require not ip 31.181.248.0/24
+    Require not ip 37.18.38.0/24
+    Require not ip 37.77.111.0/24
+    Require not ip 45.140.18.0/24
+    Require not ip 62.183.46.0/24
+    Require not ip 77.110.108.0/24
+    Require not ip 83.239.97.0/24
+    Require not ip 85.172.109.0/24
+    Require not ip 85.174.205.0/24
+    Require not ip 85.175.197.0/24
+    Require not ip 85.175.217.0/24
+    Require not ip 91.233.43.0/24
+    Require not ip 95.153.163.0/24
+    Require not ip 95.153.177.0/24
+    Require not ip 95.153.178.0/24
+    Require not ip 95.153.180.0/24
+    Require not ip 95.25.184.0/24
+    Require not ip 178.176.211.0/24
+    Require not ip 185.10.173.0/24
+    Require not ip 188.162.140.0/24
+    Require not ip 188.162.143.0/24
+    Require not ip 188.170.169.0/24
+    Require not ip 217.78.231.0/24
+</RequireAll>
+
+
+
 Options -Indexes 
 ErrorDocument 404 /404.php
+
+<Files ~ "(html_editor_action|upload|virtual_file_system).php$">
+	Order Deny,Allow
+	Deny from all
+#####этой IP сервера#####
+	Allow from 178.250.157.140
+#####это офиса IP#####
+	Allow from 185.23.82.233
+#####это наш VPN#####
+	Allow from 37.252.14.181
+##########Тарасенко###########
+	Allow from 104.28.244.140
+</Files>
 
 <IfModule mod_php5.c>
   php_flag session.use_trans_sid off
@@ -29,12 +75,27 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Legal documents: old URLs -> PNG
+RewriteRule ^upload/politics\.pdf/?$ /upload/legal/legal-personal-data.png [R=301,L]
+RewriteRule ^upload/cookies\.pdf/?$ /upload/legal/legal-cookie.png [R=301,L]
+RewriteRule ^upload/rules-recommendation\.pdf/?$ /upload/legal/legal-recommendation.png [R=301,L]
+RewriteRule ^upload/compliance\.pdf/?$ /upload/legal/legal-consent.png [R=301,L]
+RewriteRule ^upload/soglasie\.pdf/?$ /upload/legal/legal-consent.png [R=301,L]
+RewriteRule ^pages/kawe_politika_obrabotki_pd/?$ /upload/legal/legal-personal-data.png [R=301,L]
+RewriteRule ^pages/kawe_soglasie_obrabotki_pd/?$ /upload/legal/legal-consent.png [R=301,L]
+RewriteRule ^pages/kawe_politika_cookie/?$ /upload/legal/legal-cookie.png [R=301,L]
+RewriteRule ^pages/kawe_pravila_rekomendatelnyh_tehnologiy/?$ /upload/legal/legal-recommendation.png [R=301,L]
   
 
   
-#добавить / если его нет 
+#добавить / если его нет Исключение для файлов .jpg и .png
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.jpg$ [NC]
+RewriteCond %{REQUEST_URI} !\.png$ [NC]
+RewriteCond %{REQUEST_URI} !\.pdf$ [NC]
 #RewriteCond %{REQUEST_URI} !(.*)/$
 RewriteRule ^(.*[^/])$ $1/ [L,R=301]
 
@@ -77,3 +138,4 @@ RewriteRule ^(.*)$ /bitrix/virtual_file_system.php [L]
 
 Redirect 301 /catalog/zaryadnye-ustroystva-kawe-germaniya-2/ /catalog/zaryadnye-ustroystva-kawe-germaniya/
 Redirect 301 /catalog/laringoskop-s-naborom-klinkov/нabor-laringoskopov-dlja-vzroslyh/ /catalog/laringoskop-s-naborom-klinkov/nabor-laringoskopov-dlja-vzroslyh/
+Redirect 301 /catalog/larigoskopy-miller /catalog/laringoskopy-miller
