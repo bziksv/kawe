@@ -451,14 +451,16 @@ else
 
 				<!--	ORDER SAVE BLOCK	-->
 				<div id="bx-soa-orderSave">
-					<div class="checkbox">
-<div>
-<label>
-<input type="checkbox" required>
-<span>Нажимая на эту кнопку, я даю своё <a target="_blank" href="/upload/legal/legal-consent.png">согласие на обработку персональных данных</a> и соглашаюсь с условиями <a target="_blank" href="/upload/legal/legal-personal-data.png">политики обработки персональных данных</a>.</span>
-</label>
-</div>
-
+					<div class="checkbox" id="bx-soa-custom-consent-wrap">
+						<div>
+							<label>
+								<input type="checkbox" id="bx-soa-custom-consent" name="bx-soa-custom-consent">
+								<span>Нажимая на эту кнопку, я даю своё <a target="_blank" href="/upload/legal/legal-consent.png">согласие на обработку персональных данных</a> и соглашаюсь с условиями <a target="_blank" href="/upload/legal/legal-personal-data.png">политики обработки персональных данных</a>.</span>
+							</label>
+						</div>
+						<div class="bx-soa-consent-error" style="display:none;color:#a94442;margin-top:8px;">
+							Необходимо дать согласие на обработку персональных данных
+						</div>
 					</div>
 					<a href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg hidden-xs" data-save-button="true">
 						<?=$arParams['MESS_ORDER']?>
