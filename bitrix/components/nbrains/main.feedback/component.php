@@ -13,7 +13,9 @@ if(!defined("B_PROLOG_INCLUDED")||B_PROLOG_INCLUDED!==true)die();
 
 
 
-$arResult["PARAMS_HASH"] = md5(serialize($arParams).$this->GetTemplateName());
+$hashParams = $arParams;
+unset($hashParams['ROI_VISIT']);
+$arResult["PARAMS_HASH"] = md5(serialize($hashParams).$this->GetTemplateName());
 $arParams["USE_CAPTCHA"] = $arParams["USE_CAPTCHA"];
 
 $arParams["EVENT_NAME"] = trim($arParams["EVENT_NAME"]);
@@ -36,36 +38,21 @@ foreach($arParams['PROPERTY_CODE'] as $code){
 	{ $arPropertyField[] = $arr; }
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '' && (!isset($_POST["PARAMS_HASH"]) || $arResult["PARAMS_HASH"] === $_POST["PARAMS_HASH"]))
+if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '')
 {
-	$arResult["ERROR_MESSAGE"] = array();
-	if(check_bitrix_sessid())
+	if(!isset($_POST["PARAMS_HASH"]) || $arResult["PARAMS_HASH"] !== $_POST["PARAMS_HASH"])
 	{
+		$arResult["ERROR_MESSAGE"] = array(GetMessage("MF_REQ") ?: "Ошибка отправки формы. Обновите страницу и попробуйте снова.");
+	}
+	elseif(check_bitrix_sessid())
+	{
+		$arResult["ERROR_MESSAGE"] = array();
 
 		foreach($arPropertyField as $field){
 			if($field['IS_REQUIRED'] == "Y"){
 				if(strlen($_POST[$field['CODE']]) < 1)
 					$arResult["ERROR_MESSAGE"][] = GetMessage("FIELD_ERROR").': '.$field['NAME'];
 			}
-		}
-
-		if($arParams["USE_CAPTCHA"] == "Y")
-		{
-		    if($recaptcha = $_REQUEST['g-recaptcha-response']){
-
-                $google_url = "https://www.google.com/recaptcha/api/siteverify";
-                $secret = '6LdmHK4UAAAAAP5EQUdSGT1wg5lm99aLMwKWI9q8';
-                $ip = $_SERVER['REMOTE_ADDR'];
-                $url = $google_url."?secret=".$secret."&response=".$recaptcha."&remoteip=".$ip;
-                $res = file_get_contents($url, true);
-                $res = json_decode($res, true);
-
-                if(!$res['success']){
-                    $arResult["ERROR_MESSAGE"][] = GetMessage("MF_CAPTCHA_WRONG");
-                }
-            }else
-                $arResult["ERROR_MESSAGE"][] = GetMessage("MF_CAPTHCA_EMPTY");
-
 		}
 
 		if(empty($arResult["ERROR_MESSAGE"])){
@@ -107,8 +94,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '' && (!isset($_P
 		if(empty($arResult["ERROR_MESSAGE"]))
 		{
 			$arFields = Array();
-			if(isset($arParams['ROI_VISIT']) && $arParams['ROI_VISIT'])
-			    $arFields['ROI_VISIT'] = $arParams['ROI_VISIT'];
+			$roiVisit = !empty($_COOKIE['roistat_visit']) ? $_COOKIE['roistat_visit'] : '';
+			if($roiVisit !== '')
+			    $arFields['ROI_VISIT'] = $roiVisit;
 
 			foreach($arPropertyField as $field){
 				if($field['CODE'] == "PRODUCT_CART"){
@@ -135,16 +123,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '' && (!isset($_P
 		}
 	}
 	else
-		$arResult["ERROR_MESSAGE"][] = GetMessage("MF_SESS_EXP");
+		$arResult["ERROR_MESSAGE"] = array(GetMessage("MF_SESS_EXP"));
 }
 elseif($_REQUEST["success"] == $arResult["PARAMS_HASH"])
 {
 	$arResult["OK_MESSAGE"] = $arParams["OK_TEXT"];
 }
 $arResult['USER_FIELD'] = $arPropertyField;
-
-
-if($arParams["USE_CAPTCHA"] == "Y")
-	$arResult["capCode"] =  htmlspecialcharsbx($APPLICATION->CaptchaGetCode());
 
 $this->IncludeComponentTemplate();

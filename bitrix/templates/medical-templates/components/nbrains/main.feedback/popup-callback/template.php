@@ -10,7 +10,7 @@ if(!defined("B_PROLOG_INCLUDED")||B_PROLOG_INCLUDED!==true)die();
  * @global CUser $USER
  */
 ?>
-<div class="mfeedback-p" id="callback">
+<div class="mfeedback-p" id="callback" data-params-hash="<?=$arResult["PARAMS_HASH"]?>">
 
 	<span class="button b-close"><span>&times;</span></span>
 
@@ -76,15 +76,3 @@ if(strlen($arResult["OK_MESSAGE"]) > 0):?>
 <? endif; ?>
 
 </div>
-
-
-<?if(!empty($arResult["ERROR_MESSAGE"]) OR strlen($arResult["OK_MESSAGE"]) > 0):?>
-	<script>
-		$(function(){
-			$('#callback').bPopup({
-				zIndex:1000
-			});
-		});
-
-	</script>
-<?endif;?>

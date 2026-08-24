@@ -71,7 +71,6 @@ $APPLICATION->IncludeComponent(
 		"EVENT_MESSAGE_ID" => array(
 			0 => "53",
 		),
-		"ROI_VISIT" => $_COOKIE['roistat_visit'],
 		"IBLOCK_ID" => "37",
 		"IBLOCK_TYPE" => "feedback",
 		"OK_TEXT" => "Спасибо, ваше сообщение принято.",

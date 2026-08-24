@@ -73,6 +73,44 @@ $(document).on('change', '#feedback-consent', function() {
     $('#feedback-consent-wrap .mf-consent-error').hide();
 });
 
+function openCallbackPopup() {
+    if ($.fn.bPopup) {
+        $('#callback').bPopup({ zIndex: 1000 });
+    }
+}
+
+function handleCallbackFormResult() {
+    var params = new URLSearchParams(window.location.search);
+    var successHash = params.get('success');
+    var expectedHash = $('#callback').data('params-hash');
+    var okText = $.trim($('#callback .mf-ok-text').text());
+
+    if (successHash && expectedHash && successHash === expectedHash) {
+        openCallbackPopup();
+        if (typeof alertify !== 'undefined') {
+            alertify.success(okText || 'Спасибо, ваше сообщение принято.');
+        }
+        if (window.history && window.history.replaceState) {
+            var url = new URL(window.location.href);
+            url.searchParams.delete('success');
+            window.history.replaceState({}, document.title, url.pathname + url.search + url.hash);
+        }
+        return;
+    }
+
+    if ($('#callback .errortext').length) {
+        openCallbackPopup();
+        if (typeof alertify !== 'undefined') {
+            alertify.error($.trim($('#callback .errortext').first().text()));
+        }
+        return;
+    }
+}
+
+$(function() {
+    handleCallbackFormResult();
+});
+
 
 
 var path = "/bitrix/templates/medical-templates/ajax/";

@@ -2,6 +2,15 @@
 //IBlock catalog id
 define("IBLOCK_CATALOG","33");
 
+if (
+	(!empty($_REQUEST['success']) && is_string($_REQUEST['success']))
+	|| (!empty($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === 'POST')
+) {
+	if (!defined('BX_COMPOSITE_DISABLED')) {
+		define('BX_COMPOSITE_DISABLED', true);
+	}
+}
+
 AddEventHandler("main", "OnBeforeEndBufferContent", "OnBeforeEndBufferContent", 100500);
 function OnBeforeEndBufferContent()
 {
