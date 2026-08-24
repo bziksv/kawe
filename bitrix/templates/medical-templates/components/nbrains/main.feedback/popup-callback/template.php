@@ -53,14 +53,16 @@ if(strlen($arResult["OK_MESSAGE"]) > 0):?>
 
 	<? endforeach; ?>
 
-	<div class="mf-name">
-<div>
-<label>
-<input type="checkbox" required>
-<span>Нажимая на эту кнопку, я даю своё <a target="_blank" href="/upload/legal/legal-consent.png">согласие на обработку персональных данных</a> и соглашаюсь с условиями <a target="_blank" href="/upload/legal/legal-personal-data.png">политики обработки персональных данных</a>.</span>
-</label>
-</div>
-
+	<div class="mf-name" id="callback-consent-wrap">
+		<div>
+			<label>
+				<input type="checkbox" id="callback-consent" name="callback-consent">
+				<span>Нажимая на эту кнопку, я даю своё <a target="_blank" href="/upload/legal/legal-consent.png">согласие на обработку персональных данных</a> и соглашаюсь с условиями <a target="_blank" href="/upload/legal/legal-personal-data.png">политики обработки персональных данных</a>.</span>
+			</label>
+		</div>
+		<div class="mf-consent-error" style="display:none;color:#a94442;margin-top:8px;">
+			Необходимо дать согласие на обработку персональных данных
+		</div>
 	</div>
 		
 	<div class="mfeedback-p-footer">

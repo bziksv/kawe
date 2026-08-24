@@ -23,6 +23,56 @@ $('.callback-btn').click(function(){
     });
 });
 
+function ensureBitrixSessid($form) {
+    var $sessid = $form.find('input[name="sessid"]');
+    if ($sessid.length && !$sessid.val() && typeof BX !== 'undefined' && typeof BX.bitrix_sessid === 'function') {
+        $sessid.val(BX.bitrix_sessid());
+    }
+}
+
+function validateConsentForm($form, checkboxSelector, wrapSelector) {
+    var $checkbox = $form.find(checkboxSelector);
+    var $wrap = $form.find(wrapSelector);
+    var $error = $wrap.find('.mf-consent-error');
+
+    if ($checkbox.length && !$checkbox.is(':checked')) {
+        $error.show();
+        if (typeof alertify !== 'undefined') {
+            alertify.error('Необходимо дать согласие на обработку персональных данных');
+        }
+        return false;
+    }
+
+    $error.hide();
+    return true;
+}
+
+$(document).on('submit', '#callback form', function(e) {
+    var $form = $(this);
+    ensureBitrixSessid($form);
+    if (!validateConsentForm($form, '#callback-consent', '#callback-consent-wrap')) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+$(document).on('change', '#callback-consent', function() {
+    $('#callback-consent-wrap .mf-consent-error').hide();
+});
+
+$(document).on('submit', '.mfeedback form', function(e) {
+    var $form = $(this);
+    ensureBitrixSessid($form);
+    if (!validateConsentForm($form, '#feedback-consent', '#feedback-consent-wrap')) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+$(document).on('change', '#feedback-consent', function() {
+    $('#feedback-consent-wrap .mf-consent-error').hide();
+});
+
 
 
 var path = "/bitrix/templates/medical-templates/ajax/";

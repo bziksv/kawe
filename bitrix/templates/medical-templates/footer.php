@@ -84,7 +84,7 @@ $APPLICATION->IncludeComponent(
 		),
 		"USE_CAPTCHA" => "N",
 		"COMPONENT_TEMPLATE" => "popup-callback",
-		"COMPOSITE_FRAME_MODE" => "A",
+		"COMPOSITE_FRAME_MODE" => "N",
 		"COMPOSITE_FRAME_TYPE" => "AUTO"
 	),
 	false
