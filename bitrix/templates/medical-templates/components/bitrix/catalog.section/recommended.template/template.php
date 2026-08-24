@@ -17,7 +17,18 @@ $this->setFrameMode(true);
 <div class="goods">
 	<ul class="goods__slider">
 
-		<? foreach ($arResult['ITEMS'] as $arItem): ?>
+		<? foreach ($arResult['ITEMS'] as $arItem):
+			$itemArticle = '';
+			if (!empty($arItem['PROPERTIES']['ARTICLS']['VALUE'])) {
+				$itemArticle = is_array($arItem['PROPERTIES']['ARTICLS']['VALUE'])
+					? $arItem['PROPERTIES']['ARTICLS']['VALUE'][0]
+					: $arItem['PROPERTIES']['ARTICLS']['VALUE'];
+			} elseif (!empty($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'])) {
+				$itemArticle = is_array($arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'])
+					? $arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'][0]
+					: $arItem['PROPERTIES']['CML2_ARTICLE']['VALUE'];
+			}
+		?>
 
 		<li class="goods__item">
 			<div class="goods__item_wrapper">
@@ -55,6 +66,9 @@ $this->setFrameMode(true);
 						</div>
 						<span>за штуку</span>
 					</div>
+					<? if ($itemArticle): ?>
+					<input type="hidden" name="article" value="<?=htmlspecialcharsbx($itemArticle)?>">
+					<? endif; ?>
 					<a href="javascript:void(0)" class="goods__basket icon-basket" onclick="addToBasket2(<?=$arItem['ID']?>, $('#goods__counter_input_<?=$arItem['ID']?>').val(),this);"></a>
 				</div>
 			</div>

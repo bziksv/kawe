@@ -452,26 +452,13 @@ else
 				<!--	ORDER SAVE BLOCK	-->
 				<div id="bx-soa-orderSave">
 					<div class="checkbox">
-						<?
-						if ($arParams['USER_CONSENT'] === 'Y')
-						{
-							$APPLICATION->IncludeComponent(
-								'bitrix:main.userconsent.request',
-								'userconsent.request',
-								array(
-									'ID' => $arParams['USER_CONSENT_ID'],
-									'IS_CHECKED' => $arParams['USER_CONSENT_IS_CHECKED'],
-									'IS_LOADED' => $arParams['USER_CONSENT_IS_LOADED'],
-									'AUTO_SAVE' => 'N',
-									'SUBMIT_EVENT_NAME' => 'bx-soa-order-save',
-									'REPLACE' => array(
-										'button_caption' => isset($arParams['~MESS_ORDER']) ? $arParams['~MESS_ORDER'] : $arParams['MESS_ORDER'],
-										'fields' => $arResult['USER_CONSENT_PROPERTY_DATA']
-									)
-								)
-							);
-						}
-						?>
+<div>
+<label>
+<input type="checkbox" required>
+<span>Нажимая на эту кнопку, я даю своё <a target="_blank" href="/upload/legal/legal-consent.png">согласие на обработку персональных данных</a> и соглашаюсь с условиями <a target="_blank" href="/upload/legal/legal-personal-data.png">политики обработки персональных данных</a>.</span>
+</label>
+</div>
+
 					</div>
 					<a href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg hidden-xs" data-save-button="true">
 						<?=$arParams['MESS_ORDER']?>

@@ -14,11 +14,11 @@ $arParents = array();
 $depth = 1;
 
 foreach($arResult as $i => $arMenu)
-{
+{	
 	$depth = $arMenu['DEPTH_LEVEL'];
 
 	if($arMenu['IS_PARENT'] == true)
-	{
+	{		
 		$arParents[$arMenu['DEPTH_LEVEL']-1] = $i;
 	}
 	elseif($arMenu['SELECTED'] == true)

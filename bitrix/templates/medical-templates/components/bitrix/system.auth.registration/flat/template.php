@@ -143,27 +143,15 @@ $APPLICATION->IncludeComponent(
 			<div class="bx-authform-label-container">
 			</div>
 			<div class="bx-authform-input-container">
-				<?$APPLICATION->IncludeComponent("bitrix:main.userconsent.request", "userconsent.request",
-					array(
-						"ID" => 1,
-						"IS_CHECKED" => "Y",
-						"AUTO_SAVE" => "N",
-						"IS_LOADED" => "Y",
-						"ORIGINATOR_ID" => $arResult["AGREEMENT_ORIGINATOR_ID"],
-						"ORIGIN_ID" => $arResult["AGREEMENT_ORIGIN_ID"],
-						"INPUT_NAME" => $arResult["AGREEMENT_INPUT_NAME"],
-						"REPLACE" => array(
-							"button_caption" => GetMessage("AUTH_REGISTER"),
-							"fields" => array(
-								rtrim(GetMessage("AUTH_NAME"), ":"),
-								rtrim(GetMessage("AUTH_LAST_NAME"), ":"),
-								rtrim(GetMessage("AUTH_LOGIN_MIN"), ":"),
-								rtrim(GetMessage("AUTH_PASSWORD_REQ"), ":"),
-								rtrim(GetMessage("AUTH_EMAIL"), ":"),
-							)
-						),
-					)
-				);?>
+
+<div>
+<label>
+<input type="checkbox" required>
+<span>Нажимая на эту кнопку, я даю своё <a target="_blank" href="/upload/legal/legal-consent.png">согласие на обработку персональных данных</a> и соглашаюсь с условиями <a target="_blank" href="/upload/legal/legal-personal-data.png">политики обработки персональных данных</a>.</span>
+</label>
+</div>
+
+
 			</div>
 		</div>
 		<div class="bx-authform-formgroup-container">

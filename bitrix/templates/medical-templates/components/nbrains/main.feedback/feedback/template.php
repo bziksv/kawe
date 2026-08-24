@@ -60,21 +60,11 @@ if(strlen($arResult["OK_MESSAGE"]) > 0):?>
 
 	<? endforeach; ?>
 
-    <?if($arParams["USE_CAPTCHA"] == "Y"):?>
-        <div class="mf-name">
-            <div class="g-recaptcha" data-sitekey="6LdmHK4UAAAAAGzcV1Ttdz-_C1sR9a0XEVNZn36u"></div>
-        </div>
-    <?endif;?>
-
 	<div class="mf-name">
-		<?$APPLICATION->IncludeComponent("bitrix:main.userconsent.request", "userconsent.request", Array(
-		"ID" => "1",
-		"IS_CHECKED" => "Y",
-		"AUTO_SAVE" => "N",
-		"IS_LOADED" => "Y",
-		),
-	false
-	);?>
+		<label>
+			<input type="checkbox" required>
+			<span>Нажимая на эту кнопку, я даю своё <a target="_blank" href="/upload/legal/legal-consent.png">согласие на обработку персональных данных</a> и соглашаюсь с условиями <a target="_blank" href="/upload/legal/legal-personal-data.png">политики обработки персональных данных</a>.</span>
+		</label>
 	</div>
 
 	<input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">

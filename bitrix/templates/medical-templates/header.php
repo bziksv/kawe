@@ -16,8 +16,8 @@
     <meta property="og:image" content="path/to/image.jpg">
     <link rel="shortcut icon" href="<?=SITE_TEMPLATE_PATH?>/img/favicon/favicon.ico" type="image/x-icon">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Roboto:300,400,500,700,900&amp;subset=cyrillic" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/fonts.css">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/vendor/jquery-ui/jquery-ui.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/vendor.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/alertify.css">
@@ -27,21 +27,9 @@
 
     <script src="<?=SITE_TEMPLATE_PATH?>/js/vendor.js"></script>
 
-<script type="text/javascript" src="https://incut.prime-ltd.su/incut/incut.js" async></script>
-    <link rel="stylesheet" href="https://incut.prime-ltd.su/incut/incut.css">
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-62115054-57"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-62115054-57');
-</script>
-
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body class="<?=COption::GetOptionString("main", "color_theme", "schemes_1");?>">
@@ -57,8 +45,8 @@
 
 
 <?
-if(substr($APPLICATION->GetCurPage(),-3) == "-r/"){
-    LocalRedirect(str_replace("-r","",$APPLICATION->GetCurPage()));
+if (substr($APPLICATION->GetCurPage(),-3) === "-r/") {
+    LocalRedirect(substr($APPLICATION->GetCurPage(), 0, -3));
 }
 ?>
 <?$APPLICATION->ShowPanel();?>

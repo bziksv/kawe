@@ -13,17 +13,55 @@ if( !$id )
 
 CModule::IncludeModule( 'catalog' );
 CModule::IncludeModule( 'sale' );
+CModule::IncludeModule( 'iblock' );
+
+function kaweNormalizeArticleValue($value)
+{
+    if (is_array($value))
+        $value = reset($value);
+
+    $value = trim((string)$value);
+
+    if ($value === '' || $value === 'undefined' || $value === 'null')
+        return '';
+
+    return $value;
+}
+
+function kaweGetProductArticle($productId)
+{
+    $res = CIBlockElement::GetList(
+        [],
+        ["IBLOCK_ID" => IBLOCK_CATALOG, "ID" => $productId, "ACTIVE" => "Y"],
+        false,
+        false,
+        ["ID", "PROPERTY_CML2_ARTICLE", "PROPERTY_ARTICLS"]
+    );
+
+    if (!$row = $res->Fetch())
+        return '';
+
+    if ($article = kaweNormalizeArticleValue($row['PROPERTY_ARTICLS_VALUE']))
+        return $article;
+
+    return kaweNormalizeArticleValue($row['PROPERTY_CML2_ARTICLE_VALUE']);
+}
 
 $FIELDS = [];
 $PROPS = [];
-if( !empty( $_GET["art"] ) ){
+$art = kaweNormalizeArticleValue($_GET["art"] ?? '');
+
+if ($art === '')
+    $art = kaweGetProductArticle($id);
+
+if ($art !== '') {
     $arSelect = Array("ID", "IBLOCK_ID", "NAME","PROPERTY_*");
     $arFilter = Array("IBLOCK_ID" => IBLOCK_CATALOG, "ID" => $id, "ACTIVE"=>"Y");
     $res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
     if($ob = $res->GetNextElement()){
         $arProps = $ob->GetProperties();
-        $key_price = array_search($_GET["art"], $arProps['PRICES']['DESCRIPTION']);
-        if($arProps['PRICES']['VALUE'][$key_price]){
+        $key_price = array_search($art, $arProps['PRICES']['DESCRIPTION']);
+        if($key_price !== false && !empty($arProps['PRICES']['VALUE'][$key_price])){
 
             $arDiscounts = CCatalogDiscount::GetDiscount($id, IBLOCK_CATALOG);
             $discountPrice = CCatalogProduct::CountPriceWithDiscount(
@@ -35,7 +73,7 @@ if( !empty( $_GET["art"] ) ){
             $FIELDS = ["PRICE" => $arProps['PRICES']['VALUE'][$key_price],"CUSTOM_PRICE" => "Y"];
         }
     }
-    $PROPS[] = ["NAME" => "Артикул","CODE" => "CML2_ARTICLE","VALUE" => $_GET["art"]];
+    $PROPS[] = ["NAME" => "Артикул","CODE" => "CML2_ARTICLE","VALUE" => $art];
 }
 
 if( !empty( $_GET["color"] ) )

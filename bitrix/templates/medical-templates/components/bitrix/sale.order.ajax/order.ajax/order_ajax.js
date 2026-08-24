@@ -3474,6 +3474,9 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 						var name = props[i].NAME || '',
 							value = props[i].VALUE || '';
 
+						if (value === 'undefined' || value === 'null')
+							continue;
+
 						propsNodes.push(
 							BX.create('DIV', {
 								props: {className: 'bx-soa-item-td-title'},
@@ -3647,7 +3650,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 							var name = props[i].NAME || '',
 								value = props[i].VALUE || '';
 
-							if (value.length == 0)
+							if (value.length == 0 || value === 'undefined' || value === 'null')
 								continue;
 
 							propsNodes.push(

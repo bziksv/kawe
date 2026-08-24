@@ -977,3 +977,57 @@
 	font-size: 12px;
 }
 .bx_item_detail .bx_item_description .bx_specifications_table tr td:first-child{font-weight: bold;}
+
+/* Bulk purchase request banner */
+.cart-bulk-request
+{
+    background: #f5f5f5;
+    border: 1px solid #e8e8e8;
+    box-sizing: border-box;
+    clear: both;
+    margin: 0 0 28px;
+    padding: 28px 20px;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+.cart-bulk-request__title
+{
+    color: #3c4355;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 8px;
+}
+.cart-bulk-request__text
+{
+    color: #666;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.cart-bulk-request__text a
+{
+    color: #66b3d4;
+    text-decoration: none;
+}
+.cart-bulk-request__text a:hover
+{
+    text-decoration: underline;
+}
+@media (max-width: 767px)
+{
+    .cart-bulk-request
+    {
+        margin-bottom: 20px;
+        padding: 20px 16px;
+    }
+    .cart-bulk-request__title
+    {
+        font-size: 16px;
+    }
+    .cart-bulk-request__text
+    {
+        font-size: 14px;
+    }
+}

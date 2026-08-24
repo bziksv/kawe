@@ -4,47 +4,6 @@
 
 <div class="footer">
     <div class="container">
-        <div class="footer__wrapper footer__row">
-            <div class="footer__col">
-                <div class="footer__subscribe">
-                    <i class="icon-email_big"></i>
-                    <span>Подпишитесь! Новинки, скидки, предложения!</span>
-                </div>
-            </div>
-            <div class="footer__col">
-
-                <?$APPLICATION->IncludeComponent(
-	"bitrix:sender.subscribe", 
-	"sender.subscribe", 
-	array(
-		"AJAX_MODE" => "N",
-		"AJAX_OPTION_ADDITIONAL" => "",
-		"AJAX_OPTION_HISTORY" => "N",
-		"AJAX_OPTION_JUMP" => "N",
-		"AJAX_OPTION_STYLE" => "Y",
-		"CACHE_TIME" => "3600",
-		"CACHE_TYPE" => "A",
-		"CONFIRMATION" => "N",
-		"HIDE_MAILINGS" => "N",
-		"SET_TITLE" => "N",
-		"SHOW_HIDDEN" => "N",
-		"USER_CONSENT" => "Y",
-		"USER_CONSENT_ID" => "1",
-		"USER_CONSENT_IS_CHECKED" => "Y",
-		"USER_CONSENT_IS_LOADED" => "N",
-		"USE_PERSONALIZATION" => "Y",
-		"COMPONENT_TEMPLATE" => "sender.subscribe",
-		"COMPOSITE_FRAME_MODE" => "A",
-		"COMPOSITE_FRAME_TYPE" => "AUTO"
-	),
-	false
-);?>
-
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div class="container">
         <div class="footer__row">
             <div class="footer__col">
 
@@ -79,16 +38,26 @@
             </div>
             <div class="footer__col flex-2">
                 <div class="footer__copy icon-copyright"><?=date("Y")?> Все права защищены.</div>
-                <a href="/upload/politics.pdf" target="_blank" class="footer__link">Политика конфиденциальности.</a>
-                <a href="/upload/compliance.pdf" target="_blank" class="footer__link">Согласие на обработку персональных данных.</a>
+<br>
 
-                <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/incut/incut.js"></script>
-                <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/incut/incut.css">
-                <a class="prime-incut white colour marketing-only"></a>
+
+
+<a href="https://prime-ltd.su/?from=kawe.su" target="_blank" style="position: relative; right: 11px;">
+  <img src="https://prime-ltd.su/logo/white.svg" style="width: 60%; height: auto;" title="Продвижение сайтов" alt="Продвижение сайтов">
+</a>
             </div>
         </div>
+
+
+
+
+		<div><noindex>
+Наш сайт использует <a target="_blank" style="color: white; text-decoration: underline" href="/upload/legal/legal-cookie.png">cookies</a> для обеспечения работоспособности и сбора статистики. С их помощью мы анализируем пользовательскую активность, улучшаем работу сайта и делаем рекламу более релевантной. Оставаясь на сайте, вы даёте согласие на обработку ваших персональных данных в соответствии с <a target="_blank" style="color: white; text-decoration: underline" href="/upload/legal/legal-consent.png">Согласием на обработку персональных данных</a>. Подробнее об обработке персональных данных — в <a target="_blank" style="color: white; text-decoration: underline" href="/upload/legal/legal-personal-data.png">Политике обработки персональных данных</a>. Вы можете отключить сохранение cookies в настройках браузера в любой момент. На сайте также применяются <a target="_blank" style="color: white; text-decoration: underline" href="/upload/legal/legal-recommendation.png">рекомендательные технологии</a>.
+</noindex></div>
     </div>
 </div>
+
+
 
 
 
@@ -113,7 +82,7 @@ $APPLICATION->IncludeComponent(
 			3 => "MAIL",
 			4 => "QUERY",
 		),
-		"USE_CAPTCHA" => "Y",
+		"USE_CAPTCHA" => "N",
 		"COMPONENT_TEMPLATE" => "popup-callback",
 		"COMPOSITE_FRAME_MODE" => "A",
 		"COMPOSITE_FRAME_TYPE" => "AUTO"
@@ -129,7 +98,7 @@ $APPLICATION->IncludeComponent(
 <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.maskinput.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.bpopup.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/lightgallery.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/vendor/jquery-ui/jquery-ui.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/functions.js"></script>
 
 
@@ -149,6 +118,8 @@ $APPLICATION->IncludeComponent(
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/48001034" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
+
 
 
 </body>

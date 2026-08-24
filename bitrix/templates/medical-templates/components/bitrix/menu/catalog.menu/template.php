@@ -15,7 +15,7 @@ foreach($arResult as $key => $arItem):
 	<?endif?>
 
 	<?if ($arItem["IS_PARENT"]):?>
-			<li<?if($arItem["CHILD_SELECTED"] !== true):?> <?endif?> class="catalog__item">
+			<li<?if($arItem["CHILD_SELECTED"] !== true):?> <?endif?> class="catalog__item" <?=($arItem["PARAMS"]["HIDE_SECTION"]) ? 'style="display:none"' : ''?>>
 
                 <? if(in_array($arItem["PARAMS"]["ID"], $arResult['PROPERTIES']['UF_DELETE_INDEX'])): ?>
                     <a href="<?=$arItem["LINK"]?>" class="catalog__link" data-text="<?=$arItem["TEXT"]?>"></a>
@@ -27,8 +27,8 @@ foreach($arResult as $key => $arItem):
 				<ul class="catalog__submenu">
 	<?else:?>
 
-		<?if ($arItem["PERMISSION"] > "D"):?>
-				<li <?if($arItem["DEPTH_LEVEL"] == 1):?>class="catalog__item"<?endif;?>>
+		<?if ($arItem["PERMISSION"] > "D"): ?>
+				<li <?if($arItem["DEPTH_LEVEL"] == 1):?>class="catalog__item"<?endif;?> <?=($arItem["PARAMS"]["HIDE_SECTION"]) ? 'style="display:none"' : ''?>>
                     <? if(in_array($arItem["PARAMS"]["ID"], $arResult['PROPERTIES']['UF_DELETE_INDEX'])): ?>
                         <a href="<?=$arItem["LINK"]?>" class="<?if($arItem["DEPTH_LEVEL"] > 1):?>catalog__submenu_link<?else:?>catalog__link<?endif;?>" data-text="<?=$arItem["TEXT"]?>"></a>
                     <? else: ?>

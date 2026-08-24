@@ -42,7 +42,7 @@ if (empty($arResult["CATEGORIES"]))
 									<span class="old"><?=$arPrice["PRINT_VALUE"]?></span>
 								</div>
 							<?else:?>
-								<div class="bx_price"><?=$arPrice["PRINT_VALUE"]?></div>
+								<div class="bx_price"><?=($arPrice["VALUE"]) ? $arPrice["PRINT_VALUE"] : "Цена по запросу"; ?></div>
 							<?endif;
 						}
 						if ($arPrice["MIN_PRICE"] == "Y")

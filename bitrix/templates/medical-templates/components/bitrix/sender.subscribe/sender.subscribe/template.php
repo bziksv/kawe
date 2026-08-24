@@ -104,24 +104,10 @@ $buttonId = $this->randString();
 		<button class="subscribe__btn" id="bx_subscribe_btn_<?=$buttonId?>"><span><?=GetMessage("subscr_form_button")?></span></button>
 
 		<?if ($arParams['USER_CONSENT'] == 'Y'):?>
-
-			<?$APPLICATION->IncludeComponent(
-				"bitrix:main.userconsent.request",
-				"userconsent.request",
-				array(
-					"ID" => $arParams["USER_CONSENT_ID"],
-					"IS_CHECKED" => $arParams["USER_CONSENT_IS_CHECKED"],
-					"AUTO_SAVE" => "Y",
-					"IS_LOADED" => $arParams["USER_CONSENT_IS_LOADED"],
-					"ORIGIN_ID" => "sender/sub",
-					"ORIGINATOR_ID" => "",
-					"REPLACE" => array(
-						"button_caption" => GetMessage("subscr_form_button"),
-						"fields" => array(GetMessage("subscr_form_email_title"))
-					),
-				)
-			);?>
-
+			<label class="subscribe__consent">
+				<input type="checkbox" required <?=($arParams["USER_CONSENT_IS_CHECKED"] == "Y" ? "checked" : "")?>>
+				<span>Нажимая на эту кнопку, я даю своё <a target="_blank" href="/upload/legal/legal-consent.png">согласие на обработку персональных данных</a> и соглашаюсь с условиями <a target="_blank" href="/upload/legal/legal-personal-data.png">политики обработки персональных данных</a>.</span>
+			</label>
 		<?endif;?>
 
 	</form>

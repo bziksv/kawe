@@ -41,7 +41,7 @@ $this->setFrameMode(true);
 				<div class="goods__prices">
 
 					<div class="goods__price">
-							<?=$price['DISCOUNT_PRICE']?> ₽
+							<?=$price['DISCOUNT_PRICE']?>
 					</div>
 
 					<div class="goods__counter">

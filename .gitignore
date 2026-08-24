@@ -1,12 +1,83 @@
-upload/*
-bitrix/php_interface/*
-!/bitrix/php_interface/init.php
+# =============================================================================
+# kawe.su — Bitrix .gitignore
+# =============================================================================
+
+# --- Секреты и конфиги (обязательно) ---
+bitrix/license_key.php
 bitrix/.settings.php
-.idea/*
-bitrix/managed_cache/*
-bitrix/cache/*
-bitrix/stack_cache/*
-access/*
-bitrix/html_pages/*
-bitrix/backup/*
+bitrix/.settings_extra.php
+bitrix/php_interface/dbconn.php
+bitrix/php_interface/after_connect.php
+bitrix/php_interface/after_connect_d7.php
+bitrix/php_interface/*.bak.php
+.htaccess
+.env
+.env.*
+
+# php_interface: игнорируем всё, оставляем только init.php и include-код
+bitrix/php_interface/*
+!bitrix/php_interface/init.php
+!bitrix/php_interface/include/
+!bitrix/php_interface/include/**
+
+# --- Кэш и временные каталоги Bitrix ---
+bitrix/cache/
+bitrix/managed_cache/
+bitrix/stack_cache/
+bitrix/html_pages/
+bitrix/tmp/
+bitrix/backup/
+bitrix/catalog_export/
+bitrix/updates/
+upload/tmp/
+
+# --- Пользовательские файлы / медиа ---
+upload/*
+!upload/legal/
+!upload/legal/**
+!upload/sale/
+upload/sale/*
+!upload/sale/delivery/
+upload/sale/delivery/*
+!upload/sale/delivery/logotip/
+!upload/sale/delivery/logotip/**
+
+# --- Логи ---
+*.log
+logs/
+pathLog.txt
+log_*.txt
+bitrix/modules/*.dat
+bitrix/modules/updater*.log
+bitrix/modules/updater_versions.php
+bitrix/site_checker_*.log
+
+# --- Sitemap и XML-выгрузки ---
+sitemap*.xml
+~2sitemap*.xml
+
+# --- Архивы модулей ---
+bitrix/modules/*.tar.gz
+bitrix/modules/*.zip
+
+# --- IDE / OS ---
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Прочее ---
+/access/
+/node_modules/
+/vendor/
+*.sql
+*.sql.gz
+*.tar.gz
+*.zip
+*.rar
 sxd/*
+
+# Local overlays
+bitrix/php_interface/dbconn.local.php

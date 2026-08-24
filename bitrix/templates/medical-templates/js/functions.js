@@ -10,8 +10,9 @@ $('.cart__content .cart__radio').change(function(){
 
 $('.cart__content > p.article').text("Арт: " + $('.cart__content .cart__radio:checked').val());
 
-if($('.cart__content .cart__radio:checked').attr('data-price') != '0 ₽')
-$('.cart__content > .cart__price').text($('.cart__content .cart__radio:checked').attr('data-price'));
+if($('.cart__content .cart__radio:checked').attr('data-price') != 'Цена 0 ₽'){
+		$('.cart__content > .cart__price').text($('.cart__content .cart__radio:checked').attr('data-price'));
+}
 
 $('.cart__content > .cart_old_price').text($('.cart__content .cart__radio:checked').attr('data-old-price'));
 
@@ -48,22 +49,37 @@ function replaseBasketMobileTop() {
 
 
 function addToBasket2(idel, quantity,el) {
+    var $root = $(el).closest('.cart__content, .goods__item'),
+        art = $root.find('.cart__radio:checked').val();
 
-    $art = $(el).closest('.cart__content').find('.cart__radio:checked').val();
-    if(!$art)
-        $art = $(el).closest('.goods__item').find('input[name="article"]').val();
+    if (!art)
+        art = $root.find('input[name="article"]').val();
 
-    $color = $.trim($(el).closest('.cart__content').find('.cart__radio:checked').parent().text());
-    if(!$color)
-        $color = $(el).closest('.goods__item').find('input[name="color"]').val();
+    if (!art || art === 'undefined' || art === 'null')
+        art = '';
 
-    if($color == undefined)
-        $color = 0;
+    var color = $.trim($root.find('.cart__radio:checked').parent().text());
+    if (!color)
+        color = $root.find('input[name="color"]').val();
 
-    $href = path + "add.php?id=" + idel + '&quantity=' + quantity + '&art=' + $art + '&color=' + $color;
+    if (!color || color === 'undefined' || color === 'null')
+        color = 0;
+
+    var requestData = {
+        id: idel,
+        quantity: quantity
+    };
+
+    if (art)
+        requestData.art = art;
+
+    if (color)
+        requestData.color = color;
+
     $.ajax({
-        url: $href,
+        url: path + "add.php",
         type: 'get',
+        data: requestData,
         success: function (data) {
             console.log(data);
             if (data == 'Товар успешно добавлен в корзину') {

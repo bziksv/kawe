@@ -23,14 +23,14 @@
                     <div class="goods__info">
                         <div class="goods__prices">
 
-                            <div class="goods__price"><?=$price['DISCOUNT_PRICE']?> ₽</div>
+                            <div class="goods__price"><?=$price['DISCOUNT_PRICE']?></div>
 
                             <div class="goods__counter">
                                 <div class="goods__counter_subtract">-</div>
                                 <input type="text" class="goods__counter_input" id="goods__counter_input_<?=$arItem['ID']?>" value="1" readonly>
                                 <div class="goods__counter_add">+</div>
                             </div>
-                            <span>за штуку</span>
+                            <span data-text="за штуку"><?=($arItem["JS_HIDE"] == "N") ? "за штуку" : "" ?></span>
                         </div>
                         <? if(count($arItem['ARTICLS']['VALUE']) > 1): ?>
                             <a href="javascript:void(0)" class="goods__basket icon-basket" onclick="$('#more_option_<?=$arItem[ID]?>').bPopup({zIndex:1000});"></a>

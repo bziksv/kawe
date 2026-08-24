@@ -43,11 +43,9 @@ if($_REQUEST['THEME']){
 function priceDiscount($id){
     global $USER;
     $ar_res_price = CCatalogProduct::GetOptimalPrice($id, 1, $USER->GetUserGroupArray(), 'N');
-    if($ar_res_price['DISCOUNT_PRICE']){
-        return $ar_res_price;
-    }else{
-        return false;
-    }
+	$ar_res_price['DISCOUNT_PRICE'] = ($ar_res_price['DISCOUNT_PRICE']) ? CurrencyFormat($ar_res_price['DISCOUNT_PRICE'], $ar_res_price["RESULT_PRICE"]["CURRENCY"]) : "Цена по запросу";
+	
+	return $ar_res_price;
 }
 
 function EditData ($DATA){

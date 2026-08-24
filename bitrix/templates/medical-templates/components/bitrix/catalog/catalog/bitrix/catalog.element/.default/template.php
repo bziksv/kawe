@@ -61,8 +61,20 @@ $this->setFrameMode(true);
 		</div>
 
 		<div class="cart__content">
-			<? if($arResult['PROPERTIES']['CML2_ARTICLE']['VALUE']): ?>
-			<p class="article">Арт: <?=$arResult['PROPERTIES']['CML2_ARTICLE']['VALUE']?></p>
+			<?php
+			$elementArticle = '';
+			if (!empty($arResult['PROPERTIES']['ARTICLS']['VALUE'])) {
+				$elementArticle = is_array($arResult['PROPERTIES']['ARTICLS']['VALUE'])
+					? $arResult['PROPERTIES']['ARTICLS']['VALUE'][0]
+					: $arResult['PROPERTIES']['ARTICLS']['VALUE'];
+			} elseif (!empty($arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'])) {
+				$elementArticle = is_array($arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'])
+					? $arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'][0]
+					: $arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'];
+			}
+			?>
+			<? if($elementArticle): ?>
+			<p class="article">Арт: <?=$elementArticle?></p>
 			<br>
 				<?if($arResult['PROPERTIES']['ARTICLS']['DESCRIPTION'][0]):?>
 				<p>Варианты:</p>
@@ -76,7 +88,8 @@ $this->setFrameMode(true);
 				</div>
 				<?else:?>
 					<span>
-						<input type="radio" name="color" data-old-price="<?=CurrencyFormat($arResult['PRICES']['BASE']['OLD'][0],"RUB");?>" data-price="Цена <?=CurrencyFormat($arResult['PROPERTIES']['PRICES']['VALUE'][0],$arResult['PRICES']['BASE']['CURRENCY'])?>" class="cart__radio" checked value="<?=$arResult['PROPERTIES']['ARTICLS']['VALUE'][0]?>">
+						<input type="hidden" name="article" value="<?=htmlspecialcharsbx($elementArticle)?>">
+						<input type="radio" name="color" data-old-price="<?=CurrencyFormat($arResult['PRICES']['BASE']['OLD'][0],"RUB");?>" data-price="Цена <?=CurrencyFormat($arResult['PROPERTIES']['PRICES']['VALUE'][0],$arResult['PRICES']['BASE']['CURRENCY'])?>" class="cart__radio" checked value="<?=htmlspecialcharsbx($elementArticle)?>">
 					</span>
 				<? endif; ?>
 			<? endif; ?>
@@ -107,6 +120,14 @@ $this->setFrameMode(true);
 
 				<a href="javascript:void(0)" class="cart__basket" onclick="addToBasket2(<?=$arResult['ID']?>, $('.goods__counter_input').val(),this);">Купить</a>
 			</div>
+		</div>
+	</div>
+
+	<div class="cart-bulk-request">
+		<div class="cart-bulk-request__title">Закупаете большой список позиций?</div>
+		<div class="cart-bulk-request__text">
+			Не тратьте время, пришлите нам заявку на E-mail:
+			<a href="mailto:<?=tplvar('email');?>" class="roi_visit"><?=tplvar('email', true);?></a>
 		</div>
 	</div>
 

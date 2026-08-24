@@ -30,6 +30,7 @@ if(!$arParams['SECTION']['UF_RECOMMENDED_LIST'])
             $arResult['ITEMS'][$arFields['ID']]['ARTICLS'] = $arProps['ARTICLS'];
             $arResult['ITEMS'][$arFields['ID']]['NAME'] = ($jProduct[$arFields['ID']][0]) ?: $arFields['NAME'];
             $arResult['ITEMS'][$arFields['ID']]['DESCRIPTION'] = $jProduct[$arFields['ID']][1];
+			$arResult['ITEMS'][$arFields['ID']]['JS_HIDE'] = (isset($jProduct[$arFields['ID']][2]) && $jProduct[$arFields['ID']][2] == "Y") ? "Y" : "N";
         }
     }
     ?>
