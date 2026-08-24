@@ -58,7 +58,29 @@ if ($arParams["SET_TITLE"] == "Y")
 								<tr>
 									<td class="ps_logo">
 										<div class="pay_name"><?=Loc::getMessage("SOA_PAY") ?></div>
-										<?=CFile::ShowImage($arPaySystem["LOGOTIP"], 100, 100, "border=0\" style=\"width:100px\"", "", false) ?>
+										<?
+										$paySystemLogoSrc = '';
+										if (!empty($arPaySystem['LOGOTIP']))
+										{
+											$paySystemLogoSrc = (string)CFile::GetPath($arPaySystem['LOGOTIP']);
+										}
+										if (
+											$paySystemLogoSrc === ''
+											|| !is_file($_SERVER['DOCUMENT_ROOT'].$paySystemLogoSrc)
+										)
+										{
+											$paySystemLogoSrc = SITE_TEMPLATE_PATH.'/components/bitrix/sale.order.ajax/order.ajax/images/pay_system_logo.gif';
+											if (!is_file($_SERVER['DOCUMENT_ROOT'].$paySystemLogoSrc))
+											{
+												$paySystemLogoSrc = '/bitrix/modules/sale/payment/bill/logo.gif';
+											}
+											if (!is_file($_SERVER['DOCUMENT_ROOT'].$paySystemLogoSrc))
+											{
+												$paySystemLogoSrc = '/bitrix/images/sale/nopaysystem.gif';
+											}
+										}
+										?>
+										<img src="<?=htmlspecialcharsbx($paySystemLogoSrc)?>" width="100" height="100" style="width:100px" border="0" alt="<?=htmlspecialcharsbx($arPaySystem['NAME'])?>">
 										<div class="paysystem_name"><?=$arPaySystem["NAME"] ?></div>
 										<br/>
 									</td>

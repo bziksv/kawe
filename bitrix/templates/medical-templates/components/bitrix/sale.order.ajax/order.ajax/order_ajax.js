@@ -84,7 +84,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			this.defaultBasketItemLogo = this.templateFolder + "/images/product_logo.png";
 			this.defaultStoreLogo = this.templateFolder + "/images/pickup_logo.png";
 			this.defaultDeliveryLogo = this.templateFolder + "/images/delivery_logo.png";
-			this.defaultPaySystemLogo = this.templateFolder + "/images/pay_system_logo.png";
+			this.defaultPaySystemLogo = this.templateFolder + "/images/pay_system_logo.gif";
 
 			this.orderBlockNode = BX(parameters.orderBlockId);
 			this.totalBlockNode = BX(parameters.totalBlockId);
