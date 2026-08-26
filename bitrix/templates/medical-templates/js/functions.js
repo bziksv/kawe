@@ -30,8 +30,8 @@ function ensureBitrixSessid($form) {
     }
 }
 
-function validateConsentForm($form, checkboxSelector, wrapSelector) {
-    var $form = $(form);
+function validateConsentForm(formEl, checkboxSelector, wrapSelector) {
+    var $form = $(formEl);
     var $checkbox = $form.find(checkboxSelector);
     if (!$checkbox.length) {
         $checkbox = $(checkboxSelector);
@@ -51,12 +51,59 @@ function validateConsentForm($form, checkboxSelector, wrapSelector) {
     return true;
 }
 
-function submitFeedbackForm(form) {
-    if (form._consentSubmitting) {
-        return;
+function initCallbackFormFields() {
+    $('#callback input[name="PHONE"]').mask('+7 (999) 999 99 99');
+}
+
+function updateCallbackFromHtml(html) {
+    var $parsed = $($.parseHTML(html, document, true));
+    var $new = $parsed.filter('#callback').add($parsed.find('#callback')).first();
+    if (!$new.length) {
+        return false;
     }
-    form._consentSubmitting = true;
-    HTMLFormElement.prototype.submit.call(form);
+
+    var $callback = $('#callback');
+    $callback.attr('data-params-hash', $new.attr('data-params-hash') || '');
+    $callback.html($new.html());
+    initCallbackFormFields();
+    return true;
+}
+
+function submitCallbackFormAjax(form) {
+    var $form = $(form);
+    var $btn = $form.find('[type="submit"]').prop('disabled', true);
+
+    $.ajax({
+        url: $form.attr('action') || window.location.pathname,
+        type: 'POST',
+        data: $form.serialize(),
+        dataType: 'html'
+    }).done(function(html) {
+        if (!updateCallbackFromHtml(html)) {
+            document.open();
+            document.write(html);
+            document.close();
+            return;
+        }
+
+        ensureCallbackPopupOpen();
+
+        if ($('#callback .mf-ok-text').length) {
+            if (typeof alertify !== 'undefined') {
+                alertify.success($.trim($('#callback .mf-ok-text').text()) || 'Спасибо, ваше сообщение принято.');
+            }
+        } else if ($('#callback .errortext').length) {
+            if (typeof alertify !== 'undefined') {
+                alertify.error($.trim($('#callback .errortext').first().text()));
+            }
+        }
+    }).fail(function() {
+        if (typeof alertify !== 'undefined') {
+            alertify.error('Ошибка отправки. Попробуйте ещё раз.');
+        }
+    }).always(function() {
+        $btn.prop('disabled', false);
+    });
 }
 
 $(document).on('submit', '#callback form', function(e) {
@@ -66,15 +113,27 @@ $(document).on('submit', '#callback form', function(e) {
     var $form = $(form);
     ensureBitrixSessid($form);
     if (!validateConsentForm(form, '#callback-consent', '#callback-consent-wrap')) {
+        var consentWrap = document.getElementById('callback-consent-wrap');
+        if (consentWrap) {
+            consentWrap.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        }
         return false;
     }
-    submitFeedbackForm(form);
+    submitCallbackFormAjax(form);
     return false;
 });
 
 $(document).on('change', '#callback-consent', function() {
     $('#callback-consent-wrap .mf-consent-error').hide();
 });
+
+function submitFeedbackForm(form) {
+    if (form._consentSubmitting) {
+        return;
+    }
+    form._consentSubmitting = true;
+    HTMLFormElement.prototype.submit.call(form);
+}
 
 $(document).on('submit', '.mfeedback form', function(e) {
     e.preventDefault();
@@ -94,9 +153,18 @@ $(document).on('change', '#feedback-consent', function() {
 });
 
 function openCallbackPopup() {
-    if ($.fn.bPopup) {
-        $('#callback').bPopup({ zIndex: 1000 });
+    if (!$.fn.bPopup) {
+        return;
     }
+    var $el = $('#callback');
+    if ($el.is(':visible')) {
+        return;
+    }
+    $el.bPopup({ zIndex: 1000 });
+}
+
+function ensureCallbackPopupOpen() {
+    openCallbackPopup();
 }
 
 function handleCallbackFormResult() {
