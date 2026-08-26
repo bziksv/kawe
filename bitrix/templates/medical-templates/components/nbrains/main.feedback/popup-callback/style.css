@@ -66,3 +66,30 @@
     padding: 30px 25px 50px;
 }
 
+.callback-status{
+    margin: 0 20px 16px;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.45;
+    text-align: left;
+}
+
+.callback-status--error{
+    background: #fbeaea;
+    border: 1px solid #e4b4b4;
+    color: #a94442;
+}
+
+.callback-status--success{
+    background: #eaf7ef;
+    border: 1px solid #b8dfc8;
+    color: #2f7a4f;
+}
+
+.callback-status--loading{
+    background: #eef5fb;
+    border: 1px solid #b8d4ea;
+    color: #3d6783;
+}
+

@@ -124,7 +124,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '')
 			}
 			else
 			CEvent::Send($arParams["EVENT_NAME"], SITE_ID, $arFields);
-			LocalRedirect($APPLICATION->GetCurPageParam("success=".$arResult["PARAMS_HASH"], Array("success")));
+
+			$isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH'])
+				&& strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+			if($isAjax)
+			{
+				$arResult["OK_MESSAGE"] = $arParams["OK_TEXT"];
+			}
+			else
+			{
+				LocalRedirect($APPLICATION->GetCurPageParam("success=".$arResult["PARAMS_HASH"], Array("success")));
+			}
 		}
 
 		foreach($arPropertyField as $field){
