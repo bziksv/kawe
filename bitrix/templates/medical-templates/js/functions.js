@@ -31,11 +31,15 @@ function ensureBitrixSessid($form) {
 }
 
 function validateConsentForm($form, checkboxSelector, wrapSelector) {
+    var $form = $(form);
     var $checkbox = $form.find(checkboxSelector);
-    var $wrap = $form.find(wrapSelector);
+    if (!$checkbox.length) {
+        $checkbox = $(checkboxSelector);
+    }
+    var $wrap = $(wrapSelector);
     var $error = $wrap.find('.mf-consent-error');
 
-    if ($checkbox.length && !$checkbox.is(':checked')) {
+    if (!$checkbox.length || !$checkbox.is(':checked')) {
         $error.show();
         if (typeof alertify !== 'undefined') {
             alertify.error('Необходимо дать согласие на обработку персональных данных');
@@ -47,13 +51,25 @@ function validateConsentForm($form, checkboxSelector, wrapSelector) {
     return true;
 }
 
+function submitFeedbackForm(form) {
+    if (form._consentSubmitting) {
+        return;
+    }
+    form._consentSubmitting = true;
+    HTMLFormElement.prototype.submit.call(form);
+}
+
 $(document).on('submit', '#callback form', function(e) {
-    var $form = $(this);
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var form = this;
+    var $form = $(form);
     ensureBitrixSessid($form);
-    if (!validateConsentForm($form, '#callback-consent', '#callback-consent-wrap')) {
-        e.preventDefault();
+    if (!validateConsentForm(form, '#callback-consent', '#callback-consent-wrap')) {
         return false;
     }
+    submitFeedbackForm(form);
+    return false;
 });
 
 $(document).on('change', '#callback-consent', function() {
@@ -61,12 +77,16 @@ $(document).on('change', '#callback-consent', function() {
 });
 
 $(document).on('submit', '.mfeedback form', function(e) {
-    var $form = $(this);
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var form = this;
+    var $form = $(form);
     ensureBitrixSessid($form);
-    if (!validateConsentForm($form, '#feedback-consent', '#feedback-consent-wrap')) {
-        e.preventDefault();
+    if (!validateConsentForm(form, '#feedback-consent', '#feedback-consent-wrap')) {
         return false;
     }
+    submitFeedbackForm(form);
+    return false;
 });
 
 $(document).on('change', '#feedback-consent', function() {

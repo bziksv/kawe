@@ -55,6 +55,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '')
 			}
 		}
 
+		$consentField = '';
+		if($this->GetTemplateName() == 'popup-callback')
+			$consentField = 'callback-consent';
+		elseif($this->GetTemplateName() == 'feedback')
+			$consentField = 'feedback-consent';
+
+		if($consentField !== '' && empty($_POST[$consentField]))
+			$arResult["ERROR_MESSAGE"][] = 'Необходимо дать согласие на обработку персональных данных';
+
 		if(empty($arResult["ERROR_MESSAGE"])){
 			$el = new CIBlockElement;
 			$PROP = array();
