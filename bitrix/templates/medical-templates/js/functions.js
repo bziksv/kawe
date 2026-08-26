@@ -159,13 +159,18 @@ function submitCallbackFormAjax(form) {
     var $form = $(form);
     var $btn = $form.find('[type="submit"]');
     var btnText = $btn.val();
+    var postData = $form.serializeArray();
+    postData.push({
+        name: $btn.attr('name') || 'submit',
+        value: $btn.val() || 'Отправить'
+    });
     $btn.prop('disabled', true).val('Отправка...');
     showCallbackStatus('loading', 'Отправка заявки...');
 
     $.ajax({
         url: $form.attr('action') || window.location.pathname,
         type: 'POST',
-        data: $form.serialize(),
+        data: $.param(postData),
         dataType: 'html',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
