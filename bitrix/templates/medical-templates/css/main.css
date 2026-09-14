@@ -625,7 +625,8 @@ ol,ul
 }
 .slider__item
 {
-    background: #afbccd no-repeat center/cover;
+    /* Banners are 1920x567 with products on both edges — cover crops them off */
+    background: #afbccd no-repeat center / 100% 100%;
     padding: 134px 0 285px;
 }
 .slider__title
