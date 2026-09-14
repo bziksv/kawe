@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/fonts.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/vendor/jquery-ui/jquery-ui.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/vendor.css">
-    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css?v=20260914b">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/alertify.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/default.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/lightgallery.css">
