@@ -1,7 +1,7 @@
 "use strict";
 $(function() {
     $(".slider__wrapper").lightSlider({
-        adaptiveHeight: !0,
+        adaptiveHeight: false,
         item: 1,
         auto:true,
         loop:true,

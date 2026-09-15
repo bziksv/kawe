@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/fonts.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/vendor/jquery-ui/jquery-ui.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/vendor.css">
-    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css?v=20260914b">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css?v=20260915l">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/alertify.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/default.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/lightgallery.css">
@@ -72,7 +72,7 @@ if (substr($APPLICATION->GetCurPage(),-3) === "-r/") {
             );?>
 
             <div class="top__account">
-                <svg class="icon icon-user"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-user"></use></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-user"><use href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-user"></use></svg>
                 <?if ($USER->IsAuthorized()):
                     $name = trim($USER->GetFullName());
                     if (! $name)

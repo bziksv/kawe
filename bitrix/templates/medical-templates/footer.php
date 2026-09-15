@@ -50,13 +50,13 @@
 
 
 
-
-		<div><noindex>
+<!--noindex-->
+		<div>
 Наш сайт использует <a target="_blank" style="color: white; text-decoration: underline" href="/upload/legal/legal-cookie.png">cookies</a> для обеспечения работоспособности и сбора статистики. С их помощью мы анализируем пользовательскую активность, улучшаем работу сайта и делаем рекламу более релевантной. Оставаясь на сайте, вы даёте согласие на обработку ваших персональных данных в соответствии с <a target="_blank" style="color: white; text-decoration: underline" href="/upload/legal/legal-consent.png">Согласием на обработку персональных данных</a>. Подробнее об обработке персональных данных — в <a target="_blank" style="color: white; text-decoration: underline" href="/upload/legal/legal-personal-data.png">Политике обработки персональных данных</a>. Вы можете отключить сохранение cookies в настройках браузера в любой момент. На сайте также применяются <a target="_blank" style="color: white; text-decoration: underline" href="/upload/legal/legal-recommendation.png">рекомендательные технологии</a>.
-</noindex></div>
+		</div>
     </div>
 </div>
-
+<!--/noindex-->
 
 
 
@@ -92,7 +92,7 @@ $APPLICATION->IncludeComponent(
 
 
 
-<script src="<?=SITE_TEMPLATE_PATH?>/js/main.js"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/js/main.js?v=20260914y"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/alertify.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.maskinput.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.bpopup.min.js"></script>
