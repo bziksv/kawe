@@ -293,8 +293,8 @@ if (!$arValidTags) {
 
 </div>
 
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?=SITE_TEMPLATE_PATH?>/css/slick.css"/>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/css/slick.min.js"></script>
 <script>
 
     $('.tag-slider').slick({
