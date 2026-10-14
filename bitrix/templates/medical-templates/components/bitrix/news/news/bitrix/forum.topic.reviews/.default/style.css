@@ -363,7 +363,6 @@ div.reviews-popup-postform table.reviews-popup thead td {
 	text-align:left;}
 div.reviews-popup-postform table.reviews-popup thead td div.close{
 	cursor:pointer;
-	cursor:hand;
 	background-image: url('images/close.gif');
 	background-position: center center;
 	background-repeat:no-repeat;

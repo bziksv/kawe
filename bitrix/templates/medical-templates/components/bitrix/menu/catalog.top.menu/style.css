@@ -48,6 +48,6 @@ div.folder, div.page
 	height:17px;
 	vertical-align:top;
 }
-div.folder{cursor:pointer; cursor: hand;background-image:url(images/folder_open.gif);}
+div.folder{cursor:pointer;background-image:url(images/folder_open.gif);}
 div.menu-sitemap-tree li.menu-close div.folder{background-image:url(images/folder_close.gif);}
 div.page{background-image:url(images/page.gif);}
