@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/fonts.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/vendor/jquery-ui/jquery-ui.css">
-    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/vendor.css">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/vendor.css?v=20261014t">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/main.css?v=20260915l">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/alertify.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/css/default.css">
