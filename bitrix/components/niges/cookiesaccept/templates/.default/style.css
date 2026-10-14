@@ -1,0 +1,194 @@
+/* NIGES.COOKIESACCEPT */
+.nca-cookiesaccept-line {
+box-sizing: border-box !important;
+margin: 0 !important;
+border: none !important;
+width: 100% !important;
+min-height: 10px !important;
+max-height: 250px !important;
+clear: both !important;
+padding: var(--nca-padding, 12px) !important;
+position: fixed;
+left: 0;
+right: 0;
+opacity: var(--nca-opacity, 1);
+z-index: var(--nca-zindex, 99999);
+font-size: inherit;
+font-family: inherit;
+line-height: 1.4;
+transform: translateY(var(--nca-top, 0%));
+}
+.nca-cookiesaccept-line[hidden] {
+display: none !important;
+}
+.nca-cookiesaccept-line.nca-place-top {
+top: 0 !important;
+bottom: auto !important;
+}
+.nca-cookiesaccept-line.nca-place-bottom {
+bottom: 0 !important;
+top: auto !important;
+}
+.nca-cookiesaccept-line > .nca-bar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+flex-wrap: wrap;
+}
+.nca-cookiesaccept-line-text {
+flex: 1 1 240px;
+padding-left: 5%;
+padding-right: 5%;
+}
+.nca-cookiesaccept-line-actions {
+flex: 0 0 auto;
+padding-left: 5%;
+padding-right: 5%;
+}
+.nca-cookiesaccept-line a {
+color: inherit;
+text-decoration: underline;
+}
+.nca-accept-btn {
+cursor: pointer;
+border: 1px solid rgba(0, 0, 0, 0.15);
+border-radius: 4px;
+padding: 8px 16px;
+font: inherit;
+background: #fff;
+color: #111;
+}
+.nca-accept-btn:hover,
+.nca-accept-btn:focus {
+filter: brightness(0.97);
+}
+.nca-cookiesaccept-line.style-1 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-3 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-5 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-7 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-9 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-11 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-13 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-15 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-17 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-19 .nca-cookiesaccept-line-text {
+color: #111;
+}
+.nca-cookiesaccept-line.style-2 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-4 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-6 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-8 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-10 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-12 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-14 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-16 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-18 .nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line.style-20 .nca-cookiesaccept-line-text {
+color: #eee;
+}
+.nca-cookiesaccept-line.style-1 { background-color: rgb(61, 168, 255); }
+.nca-cookiesaccept-line.style-2 { background-color: rgb(13, 62, 102); }
+.nca-cookiesaccept-line.style-3 { background-color: rgb(197, 197, 197); }
+.nca-cookiesaccept-line.style-4 { background-color: rgb(71, 71, 71); }
+.nca-cookiesaccept-line.style-5 { background-color: rgb(61, 255, 158); }
+.nca-cookiesaccept-line.style-6 { background-color: rgb(9, 92, 50); }
+.nca-cookiesaccept-line.style-7 { background-color: rgb(84, 255, 61); }
+.nca-cookiesaccept-line.style-8 { background-color: rgb(92, 5, 5); }
+.nca-cookiesaccept-line.style-9 { background-color: rgb(203, 255, 61); }
+.nca-cookiesaccept-line.style-10 { background-color: rgb(70, 94, 4); }
+.nca-cookiesaccept-line.style-11 { background-color: rgb(255, 148, 61); }
+.nca-cookiesaccept-line.style-12 { background-color: rgb(138, 70, 14); }
+.nca-cookiesaccept-line.style-13 { background-color: rgb(255, 61, 61); }
+.nca-cookiesaccept-line.style-14 { background-color: rgb(119, 22, 22); }
+.nca-cookiesaccept-line.style-15 { background-color: rgb(255, 61, 152); }
+.nca-cookiesaccept-line.style-16 { background-color: rgb(85, 10, 45); }
+.nca-cookiesaccept-line.style-17 { background-color: rgb(83, 129, 255); }
+.nca-cookiesaccept-line.style-18 { background-color: rgb(6, 37, 122); }
+.nca-cookiesaccept-line.style-19 { background-color: rgb(255, 255, 255); }
+.nca-cookiesaccept-line.style-20 { background-color: rgb(0, 0, 0); }
+@media screen and (max-width: 767px) {
+.nca-cookiesaccept-line-text,
+.nca-cookiesaccept-line-actions {
+padding-left: 1%;
+padding-right: 1%;
+}
+}
+@media screen and (min-width: 767.01px) {
+.nca-hidden-pc { display: none !important; }
+}
+@media screen and (max-width: 767px) {
+.nca-hidden-mobile { display: none !important; }
+}
+
+/* ============================================ */
+/* КАСТОМНЫЕ СТИЛИ (из старой версии)           */
+/* ============================================ */
+
+/* Кнопка принятия куки */
+#nca-cookiesaccept-line-accept-btn {
+background-color: #66B3D4 !important;
+color: #ffffff !important;
+border: none !important;
+border-radius: 12px !important;
+padding: 18px 30px !important;
+font-size: 20px !important;
+font-weight: 500 !important;
+line-height: 1 !important;
+cursor: pointer !important;
+transition: all 0.2s ease !important;
+box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25) !important;
+white-space: nowrap !important;
+}
+#nca-cookiesaccept-line-accept-btn:hover {
+background-color: #C82C30 !important;
+transform: translateY(-1px) !important;
+box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35) !important;
+}
+#nca-cookiesaccept-line-accept-btn:active {
+transform: translateY(0) !important;
+box-shadow: 0 1px 4px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Адаптив для мобильных (до 767px) */
+@media screen and (max-width: 767px) {
+    .nca-cookiesaccept-line {
+        padding: 10px 12px !important;
+        bottom: calc(16px + env(safe-area-inset-bottom, 16px)) !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+    
+    .nca-cookiesaccept-line > .nca-bar {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 8px !important;
+        text-align: center !important;
+    }
+    
+    /* Сбрасываем flex, чтобы 240px не становилось высотой */
+    .nca-cookiesaccept-line-text,
+    .nca-cookiesaccept-line-actions {
+        flex: none !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Компактный, но читаемый текст уведомления */
+    .nca-cookiesaccept-line-text {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+        margin: 0 !important;
+    }
+    
+    /* Кнопка: удобная для пальца, но не громоздкая */
+    #nca-cookiesaccept-line-accept-btn {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+        min-height: 44px !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+        white-space: normal !important;
+    }
+}
