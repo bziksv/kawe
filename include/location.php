@@ -1,7 +1,8 @@
 <? if(!$arCityes = include $_SERVER['DOCUMENT_ROOT'].'/.cityes.php') return false;
 
 // LOCATION_PART: li | popup | all (default).
-// li — только пункт меню (валидно внутри <ul>); popup — модалка+style+script снаружи <ul>.
+// li — только пункт меню (валидно внутри <ul>); popup — модалка+script снаружи <ul>.
+// Стили города — в medical-templates/css/main.css (.city .item-city), не <style> в body.
 $part = isset($LOCATION_PART) ? (string)$LOCATION_PART : 'all';
 if ($part === '') {
 	$part = 'all';
@@ -46,35 +47,6 @@ if ($part === '') {
     </div>
     <? endif; ?>
 </div>
-
-<style>
-    .city .item-city {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: 10px auto;
-        padding: 0 10px;
-    }
-    .city .item-city a {
-        width: 140px;
-        margin-bottom: 5px;
-        color: #575b71;
-        text-decoration: none;
-    }
-    .city .item-city a:hover {
-        color: #c82c30;
-    }
-    .city .item-city a.city-show {
-        flex-grow: 1;
-        text-align: center;
-    }
-    .city .item-city:last-child{
-        display: none;
-    }
-    .city .item-city:last-child.active{
-        display: flex;
-    }
-</style>
 
 <script>
     $('#location_btn').click(function(){

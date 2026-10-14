@@ -14,7 +14,11 @@ $arParents = array();
 $depth = 1;
 
 foreach($arResult as $i => $arMenu)
-{	
+{
+	// PROPERTIES — не пункт меню (см. template.php); иначе ломается вложенность <ul>/<li>.
+	if (!is_array($arMenu) || !isset($arMenu['DEPTH_LEVEL']))
+		continue;
+
 	$depth = $arMenu['DEPTH_LEVEL'];
 
 	if($arMenu['IS_PARENT'] == true)
