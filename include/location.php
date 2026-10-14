@@ -1,12 +1,23 @@
-<? if(!$arCityes = include $_SERVER['DOCUMENT_ROOT'].'/.cityes.php') return false; ?>
+<? if(!$arCityes = include $_SERVER['DOCUMENT_ROOT'].'/.cityes.php') return false;
 
+// LOCATION_PART: li | popup | all (default).
+// li — только пункт меню (валидно внутри <ul>); popup — модалка+style+script снаружи <ul>.
+$part = isset($LOCATION_PART) ? (string)$LOCATION_PART : 'all';
+if ($part === '') {
+	$part = 'all';
+}
+?>
+
+<? if ($part === 'li' || $part === 'all'): ?>
 <li class="nav__item">
     <a href="#" class="nav__link" id="location_btn">
         <?=($_COOKIE['city']) ?: 'Выбор города'?>
         <i class="icon-arrow_down" style="transform: none;"></i>
     </a>
 </li>
+<? endif; ?>
 
+<? if ($part === 'popup' || $part === 'all'): ?>
 <div class="mfeedback-p" id="location" style="max-width: 500px;">
     <span class="button b-close"><span>&times;</span></span>
     <div class="mfeedback-p-head">Выбор города</div>
@@ -82,3 +93,4 @@
         bPopup.close();
     });
 </script>
+<? endif; ?>

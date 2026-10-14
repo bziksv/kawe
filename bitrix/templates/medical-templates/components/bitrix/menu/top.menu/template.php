@@ -37,10 +37,18 @@ if (empty($arResult["ALL_ITEMS"]))
 		<? endforeach; ?>
 
         <?
-        $APPLICATION->IncludeFile("/include/location.php", Array(), Array(
-            "MODE"      => "html",
+        // Только <li> внутри <ul> — popup/style/script нельзя класть в список (валидатор HTML).
+        $APPLICATION->IncludeFile("/include/location.php", Array("LOCATION_PART" => "li"), Array(
+            "MODE"      => "php",
             "NAME"      => "Редактирование включаемой области раздела",
             "TEMPLATE"  => ""
         ));
         ?>
 	</ul>
+	<?
+	$APPLICATION->IncludeFile("/include/location.php", Array("LOCATION_PART" => "popup"), Array(
+		"MODE"      => "php",
+		"NAME"      => "Редактирование включаемой области раздела",
+		"TEMPLATE"  => ""
+	));
+	?>
