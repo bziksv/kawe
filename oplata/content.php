@@ -10,7 +10,7 @@
  <b>Оплата и условия поставки без дополнительных договоров</b>
 </p>
 <p>
-	 В случае оплаты счета без заключения дополнительнительного договора на индивидуальных условиях, вы соглашаетесь с условиями договора оферты:&nbsp;<noindex><a href="https://kawe.su/upload/oferta-kawe.pdf" rel="nofollow" target="_blank">https://kawe.su/upload/oferta-kawe.pdf</a></noindex><br>
+	 В случае оплаты счета без заключения дополнительнительного договора на индивидуальных условиях, вы соглашаетесь с условиями договора оферты: <a href="https://kawe.su/upload/oferta-kawe.pdf" rel="nofollow" target="_blank">https://kawe.su/upload/oferta-kawe.pdf</a><br>
  <br>
 	 Мы рады долгосрочному сотрудничеству!<br>
  <br>

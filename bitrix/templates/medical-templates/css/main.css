@@ -1206,7 +1206,7 @@ ol,ul
 {
     right: -3px;
 }
-.goods__list .goods__item:not(.goods__item_list)_wrapper
+.goods__list .goods__item:not(.goods__item_list) .goods__item_wrapper
 {
     margin: -5px -5px 0;
 }

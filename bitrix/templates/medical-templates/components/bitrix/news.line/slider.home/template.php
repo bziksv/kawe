@@ -31,9 +31,9 @@ if(!$arResult["ITEMS"])
 					<span class="slider__visual">
 						<img src="<?=$imgSrc?>" alt="<?=$imgAlt?>" width="900" height="450">
 					</span>
-					<span class="container slider__content">
-						<span class="slider__title"><?=$arItem['PREVIEW_TEXT']?></span>
-					</span>
+					<div class="container slider__content">
+						<div class="slider__title"><?=$arItem['PREVIEW_TEXT']?></div>
+					</div>
 				</a>
 			</li>
 		<?endforeach;?>
