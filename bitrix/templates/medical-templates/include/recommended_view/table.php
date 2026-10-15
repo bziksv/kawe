@@ -27,7 +27,7 @@
                     <?=$item['NAME']?>
                     <? if($item['DESCRIPTION']): ?>
                         <br/>
-                        <span class="goods__name__desc"><?=$item['DESCRIPTION']?></span>
+                        <div class="goods__name__desc"><?=$item['DESCRIPTION']?></div>
                     <? endif; ?>
                 </a>
 

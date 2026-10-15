@@ -81,7 +81,7 @@ $intSectionID = 0;
 
 	<? if($arSection['ELEMENT_CNT'] OR $arSection['UF_SUBSECTIONS']): ?>
 
-	<form class="filter" method="get" action="">
+	<form class="filter" method="get">
 		<label class="filter__label filter__sort">
 			Сортировать по:
 			<select name="ELEMENT_SORT_FIELD" class="iselect" onchange="this.form.submit()">

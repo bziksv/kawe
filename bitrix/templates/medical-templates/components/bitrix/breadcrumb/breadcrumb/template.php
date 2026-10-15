@@ -28,7 +28,7 @@ for($index = 0; $index < $itemSize; $index++)
 	{
 		$strReturn .= '
 			<li class="breadcrumb__item">
-				<a href="'.$arResult[$index]["LINK"].'" title="'.$title.'" itemprop="url" class="'.$icon.'">
+				<a href="'.$arResult[$index]["LINK"].'" title="'.$title.'" class="'.$icon.'">
 					<span>'.$title.'</span>
 				</a>
 			</li>';
