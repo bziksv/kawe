@@ -45,23 +45,23 @@
 	 Самовывоз осуществляется по согласованию с менеджером только из Воронежского филиала по адресу:
 </p>
 <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
- <img width="400" src="/upload/medialibrary/9e0/9e06f29043282be803d8c67e55278c81.png" height="58"><br>
+ <img width="400" src="/upload/medialibrary/9e0/9e06f29043282be803d8c67e55278c81.png" height="58" alt="Адрес пункта самовывоза"><br>
 </div>
 <p>
  <br>
 </p>
 <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
 	<div style="float: left; padding: 15px; margin-right: 10px; margin-left: 0px;" align="justify">
- <img src="/upload/medialibrary/80a/80aa96b067db42e7b27bef97e23e5f68.jpg" align="middle" style="width: 350px; height: 350px;">
-	</div>
-	<div style="float: left; padding: 15px; margin-right: 10px;">
- <img src="/upload/medialibrary/333/33347ab67c1c26c2ed8fd976a655f60a.jpg" style="width: 350px; height: 350px;">
-	</div>
-	<div style="float: left; padding: 15px; margin-right: 10px;">
- <img src="/upload/medialibrary/603/60346ef1667ab175dd4194cbf8ac0cd2.jpg" style="width: 350px; height:350px;">
-	</div>
-	<div style="float: left; padding: 15px; margin-right: 10px;">
- <img src="/upload/medialibrary/603/kawe-prod.jpg" style="width: 350px; height:350px;">
-	</div>
+ <img src="/upload/medialibrary/80a/80aa96b067db42e7b27bef97e23e5f68.jpg" align="middle" style="width: 350px; height: 350px;" alt="Продукция KaWe">
+</div>
+ <div style="float: left; padding: 15px; margin-right: 10px;">
+ <img src="/upload/medialibrary/333/33347ab67c1c26c2ed8fd976a655f60a.jpg" style="width: 350px; height: 350px;" alt="Медицинское оборудование KaWe">
+</div>
+ <div style="float: left; padding: 15px; margin-right: 10px;">
+ <img src="/upload/medialibrary/603/60346ef1667ab175dd4194cbf8ac0cd2.jpg" style="width: 350px; height:350px;" alt="Инструменты KaWe">
+</div>
+ <div style="float: left; padding: 15px; margin-right: 10px;">
+ <img src="/upload/medialibrary/603/kawe-prod.jpg" style="width: 350px; height:350px;" alt="Ассортимент KaWe">
+</div>
 </div>
  <br>

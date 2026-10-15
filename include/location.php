@@ -59,7 +59,16 @@ if ($part === '') {
     $('.city .item-city a.c').click(function(){
         var city = $(this).text();
         document.cookie = "city=" + city + "; path=/;";
-        $('#location_btn').html(city + '<i class="icon-arrow_down" style="transform: none;"></i>');
+        // DOM API — no HTML end-tag literals inside script
+        var btn = document.getElementById('location_btn');
+        if (btn) {
+            btn.textContent = '';
+            btn.appendChild(document.createTextNode(city + ' '));
+            var icon = document.createElement('i');
+            icon.className = 'icon-arrow_down';
+            icon.style.transform = 'none';
+            btn.appendChild(icon);
+        }
 
         var bPopup = $('#location').bPopup();
         bPopup.close();

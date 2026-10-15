@@ -105,32 +105,37 @@ $configJson = \Bitrix\Main\Web\Json::encode($config);
 			return;
 		}
 
-		var wrap = document.createElement('div');
-		wrap.innerHTML =
-			'<div id="nca-cookiesaccept-line"'
-			+ ' class="' + String(cfg.className).replace(/"/g, '&quot;') + '"'
-			+ ' style="' + String(cfg.styleVars).replace(/"/g, '&quot;') + '"'
-			+ ' data-cookie-name="' + String(cfg.cookieName).replace(/"/g, '&quot;') + '"'
-			+ ' data-textver="' + String(cfg.textVer) + '"'
-			+ ' role="dialog"'
-			+ ' aria-live="polite"'
-			+ '>'
-			+ '<div class="nca-bar" id="nca-bar">'
-			+ '<div class="nca-cookiesaccept-line-text">' + cfg.mainText + '</div>'
-			+ '<div class="nca-cookiesaccept-line-actions">'
-			+ '<button type="button" id="nca-cookiesaccept-line-accept-btn" class="nca-accept-btn"></button>'
-			+ '</div></div></div>';
+		// Build via DOM API so source has no HTML end-tag literals inside script.
+		var root = document.createElement('div');
+		root.id = 'nca-cookiesaccept-line';
+		root.className = String(cfg.className || '');
+		root.setAttribute('style', String(cfg.styleVars || ''));
+		root.setAttribute('data-cookie-name', String(cfg.cookieName || ''));
+		root.setAttribute('data-textver', String(cfg.textVer));
+		root.setAttribute('role', 'dialog');
+		root.setAttribute('aria-live', 'polite');
 
-		var root = wrap.firstElementChild;
-		if (!root) {
-			return;
-		}
+		var bar = document.createElement('div');
+		bar.className = 'nca-bar';
+		bar.id = 'nca-bar';
 
-		var btn = root.querySelector('#nca-cookiesaccept-line-accept-btn');
-		if (btn) {
-			btn.textContent = cfg.btnText || '';
-		}
+		var text = document.createElement('div');
+		text.className = 'nca-cookiesaccept-line-text';
+		text.innerHTML = cfg.mainText || '';
 
+		var actions = document.createElement('div');
+		actions.className = 'nca-cookiesaccept-line-actions';
+
+		var btn = document.createElement('button');
+		btn.type = 'button';
+		btn.id = 'nca-cookiesaccept-line-accept-btn';
+		btn.className = 'nca-accept-btn';
+		btn.textContent = cfg.btnText || '';
+
+		actions.appendChild(btn);
+		bar.appendChild(text);
+		bar.appendChild(actions);
+		root.appendChild(bar);
 		document.body.appendChild(root);
 
 		function hideBanner() {
@@ -139,12 +144,10 @@ $configJson = \Bitrix\Main\Web\Json::encode($config);
 			}
 		}
 
-		if (btn) {
-			btn.addEventListener('click', function () {
-				writeAcceptCookie(cfg.cookieName);
-				hideBanner();
-			});
-		}
+		btn.addEventListener('click', function () {
+			writeAcceptCookie(cfg.cookieName);
+			hideBanner();
+		});
 	}
 
 	// Epilog часто после </html>: DOMContentLoaded уже прошёл — body обычно уже есть.

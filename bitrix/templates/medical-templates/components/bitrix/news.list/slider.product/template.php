@@ -29,13 +29,6 @@ $this->setFrameMode(true);
 			</div>
 			<div class="full-slider__content">
 				<div class="full-slider__offer"><?=$arItem['NAME']?></div>
-				<!--<div class="full-slider__rate">
-					<i class="icon-star"></i>
-					<i class="icon-star"></i>
-					<i class="icon-star"></i>
-					<i class="icon-star"></i>
-					<i class="icon-star-o"></i>
-				</div>-->
 				<div class="full-slider__prices">
 					<div class="full-slider__price"><?=$arItem["PROPERTIES"]["NEW_PRICE"]["VALUE"]?></div>
 					<div class="full-slider__price-old"><?=$arItem["PROPERTIES"]["OLD_PRICE"]["VALUE"]?></div>

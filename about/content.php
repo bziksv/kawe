@@ -9,7 +9,7 @@
 </p>
  <br>
 <p>
- <img width="205" src="/upload/pic3.jpg" height="205" style="margin: 0px 40px 10px 0px;"> <img width="205" src="/upload/pic2.jpg" height="205" style="margin: 0px 40px 10px 0px;"> <img width="205" src="/upload/pic1.jpg" height="205" style="margin: 0px 40px 10px 0px;">
+ <img width="205" src="/upload/pic3.jpg" height="205" style="margin: 0px 40px 10px 0px;" alt="Продукция KaWe"> <img width="205" src="/upload/pic2.jpg" height="205" style="margin: 0px 40px 10px 0px;" alt="Медицинское оборудование KaWe"> <img width="205" src="/upload/pic1.jpg" height="205" style="margin: 0px 40px 10px 0px;" alt="Официальный дилер KaWe">
 </p>
  <br>
 <p>

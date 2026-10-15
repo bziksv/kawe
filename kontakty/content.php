@@ -7,7 +7,7 @@
 	 Письмо директору: <a href="mailto:director@kawe.su">director@kawe.su</a>
 </p>
 <p>
-	 Телефон: <img src="/upload/phone.jpg" style="margin: 0px 0px 0px 0px;">
+	 Телефон: <img src="/upload/phone.jpg" style="margin: 0px 0px 0px 0px;" alt="Телефон KaWe.su">
 </p>
 <p>
 	 График работы менеджеров: пн-пт 9:00-19:00
@@ -16,8 +16,8 @@
 	 Самовывоз осуществляется по согласованию с менеджером только из Воронежского филиала по адресу:
 </p>
 <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
- <img width="400" src="/upload/medialibrary/c0c/c0c3c4e8d449d469299b50efcbd91b6f.png">
+ <img width="400" src="/upload/medialibrary/c0c/c0c3c4e8d449d469299b50efcbd91b6f.png" alt="Адрес Воронежского филиала KaWe.su">
 </div>
 <p>
- <img src="/upload/kawe-su.jpg" style="width:100%;">
+ <img src="/upload/kawe-su.jpg" style="width:100%;" alt="Карта проезда к офису KaWe.su">
 </p>
