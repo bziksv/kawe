@@ -38,7 +38,7 @@
 
                         <div class="goods__counter">
                             <div class="goods__counter_subtract">-</div>
-                            <input type="text" class="goods__counter_input" id="goods__counter_input_<?=$item['ID']?>" value="1" readonly>
+                            <input type="text" class="goods__counter_input" id="goods__counter_input_rec_<?=$item['ID']?>" value="1" readonly>
                             <div class="goods__counter_add">+</div>
                         </div>
                         <span data-text="за штуку"><?=($item["JS_HIDE"] == "N") ? "за штуку" : "" ?></span>
@@ -47,7 +47,7 @@
                         <a href="javascript:void(0)" class="goods__buy_thumbs" onclick="$('#more_option_<?=$item[ID]?>').bPopup({zIndex:1000});" data-text="Купить"><?=($item["JS_HIDE"] == "N") ? "Купить" : "" ?></a>
                     <?else:?>
                         <input type="hidden" name="article" value="<?=$item['PROPERTIES']['ARTICLS']['VALUE'][0]?>">
-                        <a href="javascript:void(0)" class="goods__buy_thumbs" onclick="addToBasket2(<?=$item['ID']?>, $('#goods__counter_input_<?=$item['ID']?>').val(),this);" data-text="Купить"><?=($item["JS_HIDE"] == "N") ? "Купить" : "" ?></a>
+                        <a href="javascript:void(0)" class="goods__buy_thumbs" onclick="addToBasket2(<?=$item['ID']?>, $('#goods__counter_input_rec_<?=$item['ID']?>').val(),this);" data-text="Купить"><?=($item["JS_HIDE"] == "N") ? "Купить" : "" ?></a>
                     <?endif;?>
                 </div>
             </div>
