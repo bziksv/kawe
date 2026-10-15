@@ -11,7 +11,9 @@ if(!$arParams['SECTION']['UF_RECOMMENDED_LIST'])
     }
 </style>
 
-<? foreach ($arParams['SECTION']['UF_RECOMMENDED_LIST'] as $p):
+<?
+$recBlockIdx = 0;
+foreach ($arParams['SECTION']['UF_RECOMMENDED_LIST'] as $p):
     $arSlider = explode('@', $p, 3);
     $title = $arSlider[0];
     $jProductRaw = json_decode($arSlider[1], true);
@@ -54,12 +56,16 @@ if(!$arParams['SECTION']['UF_RECOMMENDED_LIST'])
     } else {
         continue;
     }
+    $recBlockIdx++;
     ?>
 <div class="title"><?=$title;?></div>
 
     <?
     /* RECOMMENDED VIEW */
-    $APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/recommended_view/". trim($arSlider[2]) .".php", Array("DATA" => $arResult), Array(
+    $APPLICATION->IncludeFile(SITE_TEMPLATE_PATH."/include/recommended_view/". trim($arSlider[2]) .".php", Array(
+        "DATA" => $arResult,
+        "BLOCK_IDX" => $recBlockIdx,
+    ), Array(
         "MODE"      => "php",
         "NAME"      => "",
         "TEMPLATE"  => "",
