@@ -147,7 +147,7 @@ $configJson = \Bitrix\Main\Web\Json::encode($config);
 		}
 	}
 
-	// Epilog часто после </html>: DOMContentLoaded уже прошёл — body обычно уже есть.
+	// Epilog часто после закрытия документа: DOMContentLoaded уже прошёл — body обычно уже есть.
 	if (document.body) {
 		boot();
 	} else if (document.readyState === 'loading') {
