@@ -15,7 +15,7 @@
 	overflow: hidden;
 }
 
-.popup-window.--fixed {
+.popup-window.\--fixed {
 	position: fixed !important;
 }
 
