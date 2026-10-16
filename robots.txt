@@ -92,5 +92,18 @@ Disallow: /news/
 Disallow: /*?TEMPLATE_THEME=
 Disallow: /*?PAGE_ELEMENT_COUNT=
 ########################
+Disallow: /antibot_installer.php
+Disallow: /hand1CtoSite.php
+Disallow: /store/
+Disallow: /include/
+Disallow: /mailru-domain0ZBCgEJOfZ3U3TMo.html
+Disallow: /mailru-verificationd37d7a6a461ffb63.html
+Disallow: /dostavka/content.php
+Disallow: /kontakty/content.php
+Disallow: /skidki/content.php
+Disallow: /klientam/kak-zakazat/content.php
+Disallow: /site_db/
+Disallow: /site_tn/
+########################
 Host: https://kawe.su/
 Sitemap: https://kawe.su/sitemap.xml
