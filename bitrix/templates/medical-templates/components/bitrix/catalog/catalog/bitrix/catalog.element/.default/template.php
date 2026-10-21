@@ -139,24 +139,38 @@ $this->setFrameMode(true);
 		</div>
 		<?endif?>
 
-		<?if($arResult['PROPERTIES']['CML2_ATTRIBUTES']['DESCRIPTION'][0]):?>
+		<?
+		$attrDesc = $arResult['PROPERTIES']['CML2_ATTRIBUTES']['DESCRIPTION'] ?? null;
+		$attrValues = $arResult['PROPERTIES']['CML2_ATTRIBUTES']['~VALUE'] ?? null;
+		?>
+		<?if(is_array($attrDesc) && !empty($attrDesc[0])):?>
 		<a href="#" class="tabs__nav">Характеристики</a>
 		<div class="tabs__content text">
 			<table>
-				<? foreach($arResult['PROPERTIES']['CML2_ATTRIBUTES']['DESCRIPTION'] as $key => $attr): ?>
+				<? foreach($attrDesc as $key => $attr): ?>
 				<tr>
 					<td><?=$attr?></td>
-					<td><?=$arResult['PROPERTIES']['CML2_ATTRIBUTES']['~VALUE'][$key]?></td>
+					<td><?=is_array($attrValues) ? ($attrValues[$key] ?? '') : ''?></td>
 				</tr>
 				<?endforeach;?>
 			</table>
 		</div>
 		<?endif?>
 
-		<?if($arResult['PROPERTIES']['CML2_COMPLECT']['VALUE']['TEXT']):?>
+		<?
+		$complectValue = $arResult['PROPERTIES']['CML2_COMPLECT']['VALUE'] ?? null;
+		$complectRaw = $arResult['PROPERTIES']['CML2_COMPLECT']['~VALUE'] ?? null;
+		$complectText = '';
+		if (is_array($complectValue) && !empty($complectValue['TEXT'])) {
+			$complectText = is_array($complectRaw) ? ($complectRaw['TEXT'] ?? $complectValue['TEXT']) : $complectValue['TEXT'];
+		} elseif (is_string($complectValue) && $complectValue !== '') {
+			$complectText = is_string($complectRaw) && $complectRaw !== '' ? $complectRaw : $complectValue;
+		}
+		?>
+		<?if($complectText):?>
 		<a href="#" class="tabs__nav">Комплектация</a>
 		<div class="tabs__content text">
-			<?=$arResult['PROPERTIES']['CML2_COMPLECT']['~VALUE']['TEXT']?>
+			<?=$complectText?>
 		</div>
 		<?endif;?>
 
