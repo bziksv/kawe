@@ -57,7 +57,7 @@
 						<div class="goods__counter_add">+</div>
 					</div>
                     <? if(count($arItem['ARTICLS']['VALUE']) > 1): ?>
-                        <a href="javascript:void(0)" class="goods__buy" onclick="$('#more_option_<?=$arItem[ITEM_ID]?>').bPopup({zIndex:1000});">Купить</a>
+                        <a href="javascript:void(0)" class="goods__buy" onclick="$('#more_option_<?=$arItem['ITEM_ID']?>').bPopup({zIndex:1000});">Купить</a>
                     <?else:?>
                         <input type="hidden" name="article" value="<?=$arItem['ARTICLS']['VALUE'][0]?>">
                         <a href="javascript:void(0)" onclick="addToBasket2(<?=$arItem['ITEM_ID']?>, $('#goods__counter_input_<?=$arItem['ITEM_ID']?>').val(),this);" class="goods__buy">Купить</a>

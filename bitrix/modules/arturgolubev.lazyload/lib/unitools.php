@@ -9,7 +9,7 @@ class Unitools {
 	public static function setStorage($type, $name, $value){ self::$storage[$type][$name] = $value;}
 	public static function getStorage($type, $name){ return self::$storage[$type][$name];}
 	
-	function getSetting($name, $def = false){
+	public static function getSetting($name, $def = false){
 		if(!isset(self::$storage["setting"][$name]))
 		{
 			self::setStorage("setting", $name, trim(\COption::GetOptionString(self::MODULE_ID, $name, $def)));
@@ -20,7 +20,7 @@ class Unitools {
 		return $r;
 	}
 	
-	function getSiteSetting($name, $def = false){
+	public static function getSiteSetting($name, $def = false){
 		if(!isset(self::$storage["setting_site"][$name]))
 		{
 			self::setStorage("setting_site", $name, trim(\COption::GetOptionString(self::MODULE_ID, $name.'_'.SITE_ID, $def)));
@@ -31,7 +31,7 @@ class Unitools {
 		return $r;
 	}
 	
-	function getSiteSettingEx($name, $def = false){
+	public static function getSiteSettingEx($name, $def = false){
 		if(!isset(self::$storage["setting_site_ex"][$name]))
 		{
 			$val = trim(\COption::GetOptionString(self::MODULE_ID, $name.'_'.SITE_ID));
@@ -48,7 +48,7 @@ class Unitools {
 		return $val;
 	}
 	
-	function checkStatus(){
+	public static function checkStatus(){
 		if(!isset(self::$storage["main"]["status"]))
 		{
 			$r = IntVal(!defined('ADMIN_SECTION') && $_SERVER['REQUEST_METHOD'] != 'POST');
@@ -65,33 +65,33 @@ class Unitools {
 		return $r;
 	}
 	
-	function checkAjax(){
+	public static function checkAjax(){
 		$check = (strtolower($_REQUEST['ajax']) == 'y' || (isset($_REQUEST["bxajaxid"]) && strlen($_REQUEST["bxajaxid"]) > 0)) ? 0 : 1;
 		if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') $check = 0;
 		return $check;
 	}
 	
-	function isAdmin(){
+	public static function isAdmin(){
 		global $USER;
 		if(!is_object($USER)) $USER = new CUser();
 		
 		return $USER->IsAdmin();
 	}
 	
-	function addJs($script){
+	public static function addJs($script){
 		global $APPLICATION;
 		$APPLICATION->AddHeadScript($script);
 	}
-	function addCss($script){
+	public static function addCss($script){
 		global $APPLICATION;
 		$APPLICATION->SetAdditionalCSS($script, true);
 	}
 	
-	function textOneLine($text){
+	public static function textOneLine($text){
 		return str_replace(array("\r\n", "\r", "\n"), '',  $text);
 	}
 	
-	function addBodyScript($script, $oldBuffer){
+	public static function addBodyScript($script, $oldBuffer){
 		$search = '</body>';
 		$replace = $script. PHP_EOL .$search;
 		

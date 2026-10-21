@@ -8,7 +8,7 @@ Class CArturgolubevCssinliner
 	const MODULE_ID = 'arturgolubev.cssinliner';
 	var $MODULE_ID = 'arturgolubev.cssinliner';
 	
-	function onBufferContent(&$bufferContent){
+	public static function onBufferContent(&$bufferContent){
 		if(!UTools::checkStatus() || !CModule::IncludeModule(self::MODULE_ID) || defined('LOCK_CSSINLINER')) return false;
 
 		if(UTools::getSetting('disable') == 'Y' || UTools::getSetting('disabled_'.SITE_ID) == 'Y') return false;
@@ -27,7 +27,7 @@ Class CArturgolubevCssinliner
 		}
 	}
 	
-	function showDebug($bufferContent){
+	public static function showDebug($bufferContent){
 		preg_match_all('/\<link.*\>/sU', $bufferContent, $arLinks);
 		$ds = '<script>';
 			$ds .= 'console.log("'.GetMessage("ARTURGOLUBEV_CSSINLINER_DEBUG_TITLE").'");';
@@ -49,7 +49,7 @@ Class CArturgolubevCssinliner
 		return $bufferContent;
 	}
 	
-	function baseOptimize($style, $useOptimize, $arDopSearch = array(), $arDopReplace = array()){
+	public static function baseOptimize($style, $useOptimize, $arDopSearch = array(), $arDopReplace = array()){
 		$arOptiSearch = array();
 		$arOptiReplace = array();
 
@@ -86,7 +86,7 @@ Class CArturgolubevCssinliner
 		return $style;
 	}
 	
-	function _getOuterStyle($url){
+	public static function _getOuterStyle($url){
 		if(extension_loaded('curl')){
 			try{
 				$ch = curl_init();
@@ -106,7 +106,7 @@ Class CArturgolubevCssinliner
 		return trim($style);
 	}
 	
-	function getOuterCss($url, $useOptimize = 'N', $arDopSearch = array(), $arDopReplace = array()){
+	public static function getOuterCss($url, $useOptimize = 'N', $arDopSearch = array(), $arDopReplace = array()){
 		if(substr($url,0,2) == '//') $url = 'https:'.$url;
 		
 		$obCache = new CPHPCache();
@@ -131,7 +131,7 @@ Class CArturgolubevCssinliner
 		return $style;
 	}
 	
-	function getInnerCss($url, $useOptimize = 'N', $arDopSearch = array(), $arDopReplace = array()){
+	public static function getInnerCss($url, $useOptimize = 'N', $arDopSearch = array(), $arDopReplace = array()){
 		$obCache = new CPHPCache();
 		
 		$timeSeconds = 3600;
@@ -153,7 +153,7 @@ Class CArturgolubevCssinliner
 		return $style;
 	}
 	
-	function replace($bufferContent){
+	public static function replace($bufferContent){
 		preg_match_all('/\<link.*\>/sU', $bufferContent, $arLinks);
 		if(!empty($arLinks[0]))
 		{

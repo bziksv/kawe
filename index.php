@@ -76,9 +76,9 @@ $APPLICATION->SetTitle("KAWE - поставки медицинской техн�
                 $arSelect = array('ID','IBLOCK_ID','IBLOCK_TYPE_ID','IBLOCK_SECTION_ID','CODE', 'NAME','PICTURE','SECTION_PAGE_URL');
                 $rsSection = CIBlockSection::GetTreeList($arFilter, $arSelect);
                 while($arSection = $rsSection->GetNext()) {
-                    $arHomeSection[$arSection[ID]][NAME] = $arSection['NAME'];
-                    $arHomeSection[$arSection[ID]][PICTURE] = CFile::GetPath($arSection['PICTURE']);
-                    $arHomeSection[$arSection[ID]][SECTION_PAGE_URL] = $arSection['SECTION_PAGE_URL'];
+                    $arHomeSection[$arSection['ID']]['NAME'] = $arSection['NAME'];
+                    $arHomeSection[$arSection['ID']]['PICTURE'] = CFile::GetPath($arSection['PICTURE']);
+                    $arHomeSection[$arSection['ID']]['SECTION_PAGE_URL'] = $arSection['SECTION_PAGE_URL'];
                 }
                 if($arHomeSection){
                     $arHomeSectionFour = array_slice($arHomeSection,0,4,true);

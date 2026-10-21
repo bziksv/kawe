@@ -11,11 +11,11 @@ Class CArturgolubevLazyload
 	const MODULE_ID = 'arturgolubev.lazyload';
 	var $MODULE_ID = 'arturgolubev.lazyload';
 	
-	function chechEnable(){
+	static function chechEnable(){
 		return (UTools::getSetting('enable') == 'Y' && UTools::getSiteSetting('disabled') != 'Y' && class_exists('DOMDocument')) ? 1 : 0;
 	}
 	
-	function getBackgroundClass(){
+	static function getBackgroundClass(){
 		$class = 'agll0708';
 		$disable_preloader = (UTools::getSetting('disable_preloader') == "Y");
 		
@@ -32,7 +32,7 @@ Class CArturgolubevLazyload
 		return $class;
 	}
 	
-	function onBufferContent(&$bufferContent){
+	static function onBufferContent(&$bufferContent){
 		global $APPLICATION;
 		
 		if(UTools::checkStatus() && UTools::checkAjax() && CModule::IncludeModule(self::MODULE_ID))
@@ -268,7 +268,7 @@ Class CArturgolubevLazyload
 		}
 	}
 	
-	function onEpilog(){
+	static function onEpilog(){
 		if(UTools::checkStatus() && UTools::checkAjax() && CModule::IncludeModule(self::MODULE_ID))
 		{
 			if(self::chechEnable())
