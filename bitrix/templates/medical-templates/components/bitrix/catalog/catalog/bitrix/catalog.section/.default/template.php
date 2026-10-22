@@ -79,14 +79,20 @@ if(empty($arResult['ITEMS']))
                                 <span>за штуку</span>
                             <? endif; ?>
 						</div>
-                        <? if(count($item['PROPERTIES']['ARTICLS']['VALUE']) > 1): ?>
+                        <?
+                        $articls = $item['PROPERTIES']['ARTICLS']['VALUE'] ?? null;
+                        if (!is_array($articls)) {
+                            $articls = ($articls !== null && $articls !== '') ? [$articls] : [];
+                        }
+                        ?>
+                        <? if(count($articls) > 1): ?>
                             <? if($let >= $arResult["UF_HIDE_BUY"] && !is_null($arResult["UF_HIDE_BUY"])): ?>
-                                <a href="javascript:void(0)" class="goods__buy_thumbs" onclick="$('#more_option_<?=$item[ID]?>').bPopup({zIndex:1000});" data-text="Купить"></a>
+                                <a href="javascript:void(0)" class="goods__buy_thumbs" onclick="$('#more_option_<?=$item['ID']?>').bPopup({zIndex:1000});" data-text="Купить"></a>
                             <? else: ?>
-                                <a href="javascript:void(0)" class="goods__buy_thumbs" onclick="$('#more_option_<?=$item[ID]?>').bPopup({zIndex:1000});">Купить</a>
+                                <a href="javascript:void(0)" class="goods__buy_thumbs" onclick="$('#more_option_<?=$item['ID']?>').bPopup({zIndex:1000});">Купить</a>
                             <? endif; ?>
                         <?else:?>
-                            <input type="hidden" name="article" value="<?=$item['PROPERTIES']['ARTICLS']['VALUE'][0]?>">
+                            <input type="hidden" name="article" value="<?=$articls[0] ?? ''?>">
                             <? if($let >= $arResult["UF_HIDE_BUY"] && !is_null($arResult["UF_HIDE_BUY"])): ?>
                                 <a href="javascript:void(0)" class="goods__buy_thumbs" onclick="addToBasket2(<?=$item['ID']?>, $('#goods__counter_input_<?=$item['ID']?>').val(),this);" data-text="Купить"></a>
                             <? else:?>
