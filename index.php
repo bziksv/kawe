@@ -181,22 +181,45 @@ $APPLICATION->SetTitle("KAWE - поставки медицинской техн�
 
                 <div class="goods">
 
-                    <?$APPLICATION->IncludeComponent(
-	"bitrix:news.line",
+                    <?
+                    // Skip products from deactivated section trees (e.g. «Архив мебель»).
+                    $GLOBALS["arrFilterNewProducts"] = array(
+                        "SECTION_GLOBAL_ACTIVE" => "Y",
+                    );
+                    $APPLICATION->IncludeComponent(
+	"bitrix:news.list",
 	"new.product",
 	Array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
+		"ADD_SECTIONS_CHAIN" => "N",
+		"CACHE_FILTER" => "Y",
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "300",
 		"CACHE_TYPE" => "A",
+		"CHECK_DATES" => "Y",
 		"COMPONENT_TEMPLATE" => "new.product",
 		"COMPOSITE_FRAME_MODE" => "A",
 		"COMPOSITE_FRAME_TYPE" => "AUTO",
 		"DETAIL_URL" => "",
+		"DISPLAY_BOTTOM_PAGER" => "N",
+		"DISPLAY_TOP_PAGER" => "N",
 		"FIELD_CODE" => array(0=>"ID",1=>"CODE",2=>"NAME",3=>"PREVIEW_PICTURE",4=>"",),
-		"IBLOCKS" => array(0=>"33",),
+		"FILTER_NAME" => "arrFilterNewProducts",
+		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
+		"IBLOCK_ID" => "33",
 		"IBLOCK_TYPE" => "1c_catalog",
+		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+		"INCLUDE_SUBSECTIONS" => "Y",
 		"NEWS_COUNT" => "12",
+		"PAGER_SHOW_ALWAYS" => "N",
+		"PROPERTY_CODE" => array(),
+		"SET_BROWSER_TITLE" => "N",
+		"SET_LAST_MODIFIED" => "N",
+		"SET_META_DESCRIPTION" => "N",
+		"SET_META_KEYWORDS" => "N",
+		"SET_STATUS_404" => "N",
+		"SET_TITLE" => "N",
+		"SHOW_404" => "N",
 		"SORT_BY1" => "TIMESTAMP_X",
 		"SORT_BY2" => "ACTIVE_FROM",
 		"SORT_ORDER1" => "DESC",
