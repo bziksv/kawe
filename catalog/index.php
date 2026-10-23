@@ -11,13 +11,14 @@ require($_SERVER["DOCUMENT_ROOT"]."/catalog/sidebar.php");
 <div class="main overflow-hidden">
 
 <?
+// Default = Bitrix SORT (SEO / curated lists). Request sort only when user picks in the form.
 if(empty($_REQUEST["ELEMENT_SORT_FIELD"])){
-	$_REQUEST["ELEMENT_SORT_FIELD"] = "catalog_PRICE_1";
+	$_REQUEST["ELEMENT_SORT_FIELD"] = "sort";
 	$_REQUEST["ELEMENT_SORT_ORDER"] = "asc";
 }else{
-	$ELEMENT_SORT_FIELD = explode(":",$_REQUEST["ELEMENT_SORT_FIELD"]);
-	$_REQUEST["ELEMENT_SORT_FIELD"] = $ELEMENT_SORT_FIELD[0];
-	$_REQUEST["ELEMENT_SORT_ORDER"] = $ELEMENT_SORT_FIELD[1];
+	$ELEMENT_SORT_FIELD = explode(":", (string)$_REQUEST["ELEMENT_SORT_FIELD"]);
+	$_REQUEST["ELEMENT_SORT_FIELD"] = $ELEMENT_SORT_FIELD[0] ?: "sort";
+	$_REQUEST["ELEMENT_SORT_ORDER"] = $ELEMENT_SORT_FIELD[1] ?? "asc";
 }
 
 if(empty($_REQUEST['PAGE_ELEMENT_COUNT'])){
@@ -110,8 +111,8 @@ $APPLICATION->IncludeComponent(
 		"SECTIONS_SHOW_PARENT_NAME" => "N",
 		"PAGE_ELEMENT_COUNT" => $_REQUEST["PAGE_ELEMENT_COUNT"],
 		"LINE_ELEMENT_COUNT" => "3",
-		"ELEMENT_SORT_FIELD" => "sort",
-		"ELEMENT_SORT_ORDER" => "asc",
+		"ELEMENT_SORT_FIELD" => $_REQUEST["ELEMENT_SORT_FIELD"],
+		"ELEMENT_SORT_ORDER" => $_REQUEST["ELEMENT_SORT_ORDER"],
 		"LIST_PROPERTY_CODE" => array(
 			0 => "",
 			1 => "NEWPRODUCT",

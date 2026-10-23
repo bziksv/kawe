@@ -87,6 +87,7 @@ $intSectionID = 0;
 			<select name="ELEMENT_SORT_FIELD" class="iselect" onchange="this.form.submit()">
 				<?
 				$ArOption = array(
+					'sort:asc' => 'По умолчанию',
 					'catalog_PRICE_1:asc' => 'Сначала дешевле',
 					'catalog_PRICE_1:desc' => 'Сначала дороже',
 					'name:asc' => 'Название: А - Я',
