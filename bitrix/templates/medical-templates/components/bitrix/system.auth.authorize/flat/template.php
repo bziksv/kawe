@@ -69,7 +69,7 @@ document.getElementById('bx_auth_secure').style.display = '';
 			<div class="bx-authform-label-container">
 				<?echo GetMessage("AUTH_CAPTCHA_PROMT")?>
 			</div>
-			<div class="bx-captcha"><img src="/bitrix/tools/captcha.php?captcha_sid=<?echo $arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" /></div>
+			<div class="bx-captcha"><img src="/bitrix/tools/captcha.php?captcha_sid=<?echo $arResult["CAPTCHA_CODE"]?>" width="240" height="50" alt="CAPTCHA" /></div>
 			<div class="bx-authform-input-container">
 				<input type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" />
 			</div>

@@ -132,7 +132,7 @@ $APPLICATION->IncludeComponent(
 			<div class="bx-authform-label-container">
 				<span class="bx-authform-starrequired">*</span><?=GetMessage("CAPTCHA_REGF_PROMT")?>
 			</div>
-			<div class="bx-captcha"><img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" /></div>
+			<div class="bx-captcha"><img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="240" height="50" alt="CAPTCHA" /></div>
 			<div class="bx-authform-input-container">
 				<input type="text" name="captcha_word" maxlength="50" value="" autocomplete="off"/>
 			</div>
