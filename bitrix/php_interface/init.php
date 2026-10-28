@@ -2,6 +2,23 @@
 //IBlock catalog id
 define("IBLOCK_CATALOG","33");
 
+// Readable digit-only CAPTCHA (no wave/lines, no 0/1 vs O/I confusion)
+if (
+	COption::GetOptionString("main", "CAPTCHA_letters", "") !== "23456789"
+	|| COption::GetOptionString("main", "CAPTCHA_bWaveTransformation", "N") !== "N"
+) {
+	COption::SetOptionString("main", "CAPTCHA_letters", "23456789");
+	COption::SetOptionString("main", "CAPTCHA_bWaveTransformation", "N");
+	COption::SetOptionString("main", "CAPTCHA_bLinesOverText", "N");
+	COption::SetOptionString("main", "CAPTCHA_textAngel_1", "0");
+	COption::SetOptionString("main", "CAPTCHA_textAngel_2", "0");
+	COption::SetOptionString("main", "CAPTCHA_textDistance_1", "6");
+	COption::SetOptionString("main", "CAPTCHA_textDistance_2", "10");
+	COption::SetOptionString("main", "CAPTCHA_textFontSize", "28");
+	COption::SetOptionString("main", "CAPTCHA_textStartX", "20");
+	COption::SetOptionString("main", "CAPTCHA_presets", "4");
+}
+
 if (
 	(!empty($_REQUEST['success']) && is_string($_REQUEST['success']))
 	|| (!empty($_POST['submit']) && $_SERVER['REQUEST_METHOD'] === 'POST')
