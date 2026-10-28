@@ -2,21 +2,25 @@
 //IBlock catalog id
 define("IBLOCK_CATALOG","33");
 
-// Readable digit-only CAPTCHA (no wave/lines, no 0/1 vs O/I confusion)
+// Readable digit-only CAPTCHA.
+// textDistance must be ~glyph width (not 6–10): positive values are absolute X steps, not gaps.
 if (
 	COption::GetOptionString("main", "CAPTCHA_letters", "") !== "23456789"
-	|| COption::GetOptionString("main", "CAPTCHA_bWaveTransformation", "N") !== "N"
+	|| (int)COption::GetOptionString("main", "CAPTCHA_textDistance_1", "0") < 28
 ) {
 	COption::SetOptionString("main", "CAPTCHA_letters", "23456789");
 	COption::SetOptionString("main", "CAPTCHA_bWaveTransformation", "N");
 	COption::SetOptionString("main", "CAPTCHA_bLinesOverText", "N");
+	COption::SetOptionString("main", "CAPTCHA_numEllipses", "0");
+	COption::SetOptionString("main", "CAPTCHA_numLines", "0");
 	COption::SetOptionString("main", "CAPTCHA_textAngel_1", "0");
 	COption::SetOptionString("main", "CAPTCHA_textAngel_2", "0");
-	COption::SetOptionString("main", "CAPTCHA_textDistance_1", "6");
-	COption::SetOptionString("main", "CAPTCHA_textDistance_2", "10");
-	COption::SetOptionString("main", "CAPTCHA_textFontSize", "28");
-	COption::SetOptionString("main", "CAPTCHA_textStartX", "20");
-	COption::SetOptionString("main", "CAPTCHA_presets", "4");
+	COption::SetOptionString("main", "CAPTCHA_textDistance_1", "30");
+	COption::SetOptionString("main", "CAPTCHA_textDistance_2", "36");
+	COption::SetOptionString("main", "CAPTCHA_textFontSize", "22");
+	COption::SetOptionString("main", "CAPTCHA_textStartX", "12");
+	COption::SetOptionString("main", "CAPTCHA_transparentTextPercent", "0");
+	COption::SetOptionString("main", "CAPTCHA_presets", "0");
 }
 
 if (
