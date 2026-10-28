@@ -9,32 +9,14 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 
 $cpt = new CCaptcha();
 
-/* Be careful to manupulate captcha parameters here because of admin panel settings */
-
-/* white background, dark chars, lines, ellipses */
-/*
-$cpt->SetBGColor(array(255, 255, 255));
-$cpt->SetTextColor(array(array(0, 100), array(0, 100), array(0, 100)));
-$cpt->SetEllipseColor(array(array(127, 255), array(127, 255), array(127, 255)));
-$cpt->SetLineColor(array(array(110, 250), array(110, 250), array(110, 250)));
-*/
-
-/* black background, light chars, lines, ellipses */
-/*
-$cpt->SetBGColor(array(0, 0, 0));
-$cpt->SetTextColor(array(array(127, 255), array(127, 255), array(127, 255)));
-$cpt->SetEllipseColor(array(array(10, 120), array(10, 120), array(10, 120)));
-$cpt->SetLineColor(array(array(10, 120), array(10, 120), array(10, 120)));
-*/
-
-/* near while background, near gray chars, near gray lines */
-/*
-$cpt->SetBGColor(array(array(200, 255), array(200, 255), array(200, 255)));
-$cpt->SetTextColor(array(array(100, 140), array(100, 140), array(100, 140)));
+// Readable digits: wider canvas, absolute X step ~ glyph width, no noise/wave.
+$cpt->SetImageSize(240, 50);
+$cpt->SetTextWriting(0, 0, 14, 42, 48, 20);
+$cpt->SetCodeChars(array('2','3','4','5','6','7','8','9'));
+$cpt->SetWaveTransformation(false);
+$cpt->SetLinesNumber(0);
 $cpt->SetEllipsesNumber(0);
-$cpt->SetLinesNumber(20);
-$cpt->SetLineColor(array(array(100, 140), array(100, 140), array(100, 140)));
-*/
+$cpt->SetLinesOverText(false);
 
 if (isset($_GET["captcha_sid"]))
 {
@@ -58,4 +40,3 @@ else
 }
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");
-?>
