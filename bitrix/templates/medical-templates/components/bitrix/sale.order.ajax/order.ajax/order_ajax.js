@@ -138,6 +138,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				this.initFirstSection();
 
 			this.initOptions();
+			this.ensurePriceRequestHint();
 			this.editOrder();
 			this.bindEvents();
 
@@ -3564,6 +3565,103 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			});
 		},
 
+		isPriceOnRequest: function(itemData)
+		{
+			return !(parseFloat(itemData && itemData.PRICE) > 0);
+		},
+
+		priceOnRequestHint: 'Цена зависит от комплектации прибора и/или наличия на складе. Для уточнения стоимости необходимо отправить запрос по электронной почте (запросить КП), либо оформить заказ на сайте и менеджер сам вам перезвонит. Если указанная цена вас не устроит, Вы можете отказаться от товара до момента его оплаты.',
+
+		createPriceOnRequestNode: function()
+		{
+			return BX.create('STRONG', {
+				props: {className: 'bx-price bx-price-request'},
+				style: {color: '#c82c30', whiteSpace: 'normal', fontWeight: '500', lineHeight: '1.2'},
+				children: [
+					BX.create('SPAN', {text: 'Цена по запросу'}),
+					BX.create('SPAN', {
+						props: {className: 'bx-price-request-hint'},
+						text: '?',
+						style: {
+							display: 'inline-block',
+							background: '#898989',
+							fontSize: '10px',
+							lineHeight: '1',
+							padding: '2px 5px',
+							marginLeft: '4px',
+							borderRadius: '50px',
+							color: '#fff',
+							verticalAlign: 'middle',
+							fontWeight: '400',
+							cursor: 'pointer'
+						}
+					})
+				]
+			});
+		},
+
+		ensurePriceRequestHint: function()
+		{
+			if (this.priceRequestHintReady)
+				return;
+
+			this.priceRequestHintReady = true;
+
+			var hintText = this.priceOnRequestHint,
+				popup = BX.create('DIV', {
+					style: {
+						display: 'none',
+						position: 'absolute',
+						zIndex: 2000,
+						maxWidth: '370px',
+						padding: '10px 14px',
+						background: '#fff',
+						color: '#333',
+						border: '1px solid #d5d5d5',
+						borderRadius: '4px',
+						boxShadow: '0 4px 12px rgba(0,0,0,.15)',
+						fontSize: '14px',
+						lineHeight: '1.45',
+						fontWeight: '400'
+					},
+					text: hintText
+				}),
+				hideTimer;
+
+			document.body.appendChild(popup);
+
+			BX.bindDelegate(document, 'mouseover', {className: 'bx-price-request-hint'}, function() {
+				var rect = this.getBoundingClientRect(),
+					left, top, width, maxLeft;
+
+				clearTimeout(hideTimer);
+				popup.style.display = 'block';
+				width = popup.offsetWidth;
+				left = rect.right + window.pageXOffset - width;
+				top = rect.bottom + window.pageYOffset + 8;
+				maxLeft = window.pageXOffset + document.documentElement.clientWidth - width - 12;
+				if (left > maxLeft)
+					left = maxLeft;
+				if (left < window.pageXOffset + 12)
+					left = window.pageXOffset + 12;
+				popup.style.left = left + 'px';
+				popup.style.top = top + 'px';
+			});
+			BX.bindDelegate(document, 'mouseout', {className: 'bx-price-request-hint'}, function() {
+				hideTimer = setTimeout(function() {
+					popup.style.display = 'none';
+				}, 150);
+			});
+			BX.bind(popup, 'mouseover', function() {
+				clearTimeout(hideTimer);
+			});
+			BX.bind(popup, 'mouseout', function() {
+				hideTimer = setTimeout(function() {
+					popup.style.display = 'none';
+				}, 150);
+			});
+		},
+
 		createBasketItemColumn: function(column, allData, active)
 		{
 			if (!column || !allData)
@@ -3576,14 +3674,21 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			if (column.id === 'PRICE_FORMATED')
 			{
-				textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price'}, html: data.PRICE_FORMATED}));
-				if (parseFloat(data.DISCOUNT_PRICE) > 0)
+				if (this.isPriceOnRequest(allData.data))
 				{
-					textNode.appendChild(BX.create('BR'));
-					textNode.appendChild(BX.create('STRONG', {
-						props: {className: 'bx-price-old'},
-						html: data.BASE_PRICE_FORMATED
-					}));
+					textNode.appendChild(this.createPriceOnRequestNode());
+				}
+				else
+				{
+					textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price'}, html: data.PRICE_FORMATED}));
+					if (parseFloat(data.DISCOUNT_PRICE) > 0)
+					{
+						textNode.appendChild(BX.create('BR'));
+						textNode.appendChild(BX.create('STRONG', {
+							props: {className: 'bx-price-old'},
+							html: data.BASE_PRICE_FORMATED
+						}));
+					}
 				}
 
 				if (this.options.showPriceNotesInBasket && active)
@@ -3594,14 +3699,21 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 			else if (column.id === 'SUM')
 			{
-				textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price all'}, html: data.SUM}));
-				if (parseFloat(data.DISCOUNT_PRICE) > 0)
+				if (this.isPriceOnRequest(allData.data))
 				{
-					textNode.appendChild(BX.create('BR'));
-					textNode.appendChild(BX.create('STRONG', {
-						props: {className: 'bx-price-old'},
-						html: data.SUM_BASE_FORMATED
-					}));
+					textNode.appendChild(this.createPriceOnRequestNode());
+				}
+				else
+				{
+					textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price all'}, html: data.SUM}));
+					if (parseFloat(data.DISCOUNT_PRICE) > 0)
+					{
+						textNode.appendChild(BX.create('BR'));
+						textNode.appendChild(BX.create('STRONG', {
+							props: {className: 'bx-price-old'},
+							html: data.SUM_BASE_FORMATED
+						}));
+					}
 				}
 			}
 			else if (column.id === 'DISCOUNT')
@@ -3729,18 +3841,30 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 			else if (column.id === 'PRICE_FORMATED')
 			{
-				textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price'}, html: data.PRICE_FORMATED}));
-				if (parseFloat(data.DISCOUNT_PRICE) > 0)
+				if (this.isPriceOnRequest(allData.data))
 				{
-					textNode.appendChild(BX.create('BR'));
-					textNode.appendChild(BX.create('STRONG', {
-						props: {className: 'bx-price-old'},
-						html: data.BASE_PRICE_FORMATED
-					}));
+					textNode.appendChild(this.createPriceOnRequestNode());
+				}
+				else
+				{
+					textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price'}, html: data.PRICE_FORMATED}));
+					if (parseFloat(data.DISCOUNT_PRICE) > 0)
+					{
+						textNode.appendChild(BX.create('BR'));
+						textNode.appendChild(BX.create('STRONG', {
+							props: {className: 'bx-price-old'},
+							html: data.BASE_PRICE_FORMATED
+						}));
+					}
 				}
 			}
 			else if (column.id === 'SUM')
-				textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price all'}, text: data.SUM}));
+			{
+				if (this.isPriceOnRequest(allData.data))
+					textNode.appendChild(this.createPriceOnRequestNode());
+				else
+					textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price all'}, text: data.SUM}));
+			}
 			else if (column.id === 'DISCOUNT')
 				textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price'}, text: data.DISCOUNT_PRICE_PERCENT_FORMATED}));
 			else if (column.id === 'DETAIL_PICTURE' || column.id === 'PREVIEW_PICTURE')

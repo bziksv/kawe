@@ -405,7 +405,9 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 
 						<div class="basket-item-price-current">
 							<span class="basket-item-price-current-text" id="basket-item-sum-price-{{ID}}">
-								{{{SUM_PRICE_FORMATED}}}
+								{{#PRICE}}
+									{{{SUM_PRICE_FORMATED}}}
+								{{/PRICE}}
 							</span>
 						</div>
 

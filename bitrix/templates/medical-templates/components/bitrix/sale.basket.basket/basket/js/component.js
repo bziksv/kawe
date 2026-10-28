@@ -1885,6 +1885,12 @@
 			if (!BX.type.isDomNode(priceNode))
 				return;
 
+			if (!(parseFloat(itemData.PRICE) > 0))
+			{
+				priceNode.innerHTML = '';
+				return;
+			}
+
 			var quantityMultiplier = quantity / parseFloat(itemData.MEASURE_RATIO);
 
 			var startPrice = parseFloat(itemData.SUM_PRICE),
